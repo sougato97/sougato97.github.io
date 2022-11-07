@@ -1,0 +1,4 @@
+These systems mainly deals with a robot’s navigation in an unknown environment (where the map is not known to the robot) by creating a dynamic map and correcting it occasionally when needed. This also helps in localizing the robot in real time in the environment/map created by itself. 
+
+Most common example will be a car using autopilot to navigate from location A to location B but it doesn't have access to the GPS and Google maps. Then it totally depends on it own sensors and implemented algorithms for navigation and localization.
+            
