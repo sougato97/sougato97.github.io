@@ -24,7 +24,9 @@
               </p>
               <p>
                 <!-- At Google I've worked on <a href="https://www.google.com/glass/start/">Glass</a>,  <a href="https://ai.googleblog.com/2014/04/lens-blur-in-new-google-camera-app.html">Lens Blur</a>, <a href="https://ai.googleblog.com/2014/10/hdr-low-light-and-high-dynamic-range.html">HDR+</a>, <a href="https://blog.google/products/google-ar-vr/introducing-next-generation-jump/">Jump</a>, <a href="https://ai.googleblog.com/2017/10/portrait-mode-on-pixel-2-and-pixel-2-xl.html">Portrait Mode</a>, <a href="https://ai.googleblog.com/2020/12/portrait-light-enhancing-portrait.html">Portrait Light</a>, and <a href="https://www.matthewtancik.com/nerf">NeRF</a>. I did my PhD at <a href="http://www.eecs.berkeley.edu/">UC Berkeley</a>, where I was advised by <a href="http://www.cs.berkeley.edu/~malik/">Jitendra Malik</a> and funded by the <a href="http://www.nsfgrfp.org/">NSF GRFP</a>. I've received the <a href="https://www2.eecs.berkeley.edu/Students/Awards/15/">C.V. Ramamoorthy Distinguished Research Award</a> and the <a href="https://www.thecvf.com/?page_id=413#YRA">PAMI Young Researcher Award</a>. -->
-                During my master's I have been working on SLAM (Simuntaneous Localization & Mapping) characterization and also Neural Network based <a href="https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs00500-019-03991-8/MediaObjects/500_2019_3991_Fig1_HTML.png">Dorsal Hand Vein</a> based Biometric systems. My primary research advisor is <a href="https://cse.buffalo.edu/faculty/kdantu/">Prof. Karthik Dantu.</a> 
+                During my master's I have been working on SLAM (Simuntaneous Localization & Mapping) characterization and also Neural Network based <a href="https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs00500-019-03991-8/MediaObjects/500_2019_3991_Fig1_HTML.png">Dorsal Hand Vein</a> based Biometric systems. 
+                I am grateful to be advised by <a href="https://cse.buffalo.edu/faculty/kdantu/">Prof. Karthik Dantu</a> 
+                and <a href="https://www.buffalo.edu/cubs/members.host.html/content/shared/engineering/computer-science-engineering/profiles/faculty/ladder/ratha-nalini.html">Prof. Nalini Ratha.</a>
               </p>
               <p style="text-align:center">
                 <a href="mailto:sougatob@buffalo.edu">Email</a> &nbsp/&nbsp
@@ -43,14 +45,182 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading>Research</heading>
+              <heading>Research Interests</heading>
               <p>
-                <!-- I'm interested in computer vision, machine learning, optimization, and image processing. 
-                  Much of my research is about inferring the physical world (shape, motion, color, light, etc) from images. Representative papers are <span class="highlight">highlighted</span>.
-               -->
-                I have been working on understanding characterization of the <a href="data/SLAM_info.txt">SLAM</a> systems like <a href="https://docs.openvins.com/">OPEN VINS</a>.
-                Currently I am interested in the concurrency related issues that the SLAM systems face while being executed on embedded or other low-computation power systems. I also have interests in image 
-                processing, for which I am working to implement Dorsal Hand Vein as a biometrics.  
+                My interest is on <a href="data/SLAM_info.txt">SLAM</a> systems. So I started working 
+                on understanding the<a href="https://docs.openvins.com/">OPEN VINS</a> which became a gateway.
+                The more I dived deep, I undertsood that SLAM systems are a universe of its own and can be implemented 
+                using different methods. These different methods results in different characterization. 
+                <p>
+                I am also interested in the deep learning implementaions in SLAM systems and for this 
+                <a href=https://arxiv.org/abs/2108.10869>DROID SLAM</a> turned into the gateway for me. While reading this paper
+                I saw a strking fearure that this implementation is far mmore robust than more of the systems but presently 
+                its lacking in real-time performance. 
+                I would like to dive deep and see how can we furthur improve these kind of implementations.
+                <p>
+                I am also have interested in image processing, for which I we have implemented Dorsal Hand
+                Vein as a biometrics. Here we have implemented to different Newural Networks to compare which of our model
+                performs robustly in authentication scenarios. We also are engaged in creating our own image-capturing 
+                setup so that we can have our own database.   
+              </p>
+            </td>
+          </tr>
+
+          <!-- Project Section  -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Projects</heading>
+              <p> 
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+        <!-- 1st project  -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr onmouseout="malle_stop()" onmouseover="malle_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <!-- <div class="two" id='malle_image'>
+                  <img src='images/DHV_image_infrared.jpg' width="160"></div> -->
+                <img src='images/open_vins_gt_vs_vio.png' width="160">
+              </div>
+              <script type="text/javascript">
+                function malle_start() {
+                  document.getElementById('malle_image').style.opacity = "1";
+                }
+
+                function malle_stop() {
+                  document.getElementById('malle_image').style.opacity = "0";
+                }
+                malle_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://sougato97.github.io/dhv/">
+                <papertitle>Characterization of SLAM systems</papertitle>
+              </a>
+              <br>
+              <strong>Sougato Bagchi</strong>,
+              <a href="https://sofiya.io/" target="_blank">Sofiya Semenova</a>,
+              <a href="https://cse.buffalo.edu/faculty/kdantu/" target="_blank">Karthik Dantu</a>
+              <br>
+              <!-- <em>IEEE WNYISPW</em>, 2022
+              <br> -->
+              <!-- <a href="https://sougato97.github.io/dhv/">project page</a> -->
+              <!-- /
+              <a href="https://github.com/wilchesf/dorsalhandveins">dataset ref</a> -->
+              <p></p>
+              <p>
+              My current interest is understanding the behavior of the SLAM systems when they 
+              are executed on different hardware, especially on embedded systems. 
+              Currently I have been working on Open Vins to create a comparitive study of 
+              its core modules and their behavior with that of <a href="https://arxiv.org/abs/1610.06475">ORB SLAM 2</a>. 
+              </p>
+            </td>
+          </tr>
+
+        <!-- 2nd project  -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          
+          <tr onmouseout="nerfsuper_stop()" onmouseover="nerfsuper_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='nerfsuper_image'>
+                <video  width=100% height=100% muted autoplay loop>
+                <source src="images/ra_class.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video></div>
+                <img src='images/rviz.png' width="160">
+              </div>
+              <script type="text/javascript">
+                function nerfsuper_start() {
+                  document.getElementById('nerfsuper_image').style.opacity = "1";
+                }
+
+                function nerfsuper_stop() {
+                  document.getElementById('nerfsuper_image').style.opacity = "0";
+                }
+                nerfsuper_stop()
+              </script>
+            </td>
+          
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <!-- <a href="https://sougato97.github.io/dhv/"> -->
+                <papertitle>Robotics Algorithm Projects</papertitle>
+              <!-- </a> -->
+              <!-- <br> -->
+              <!-- <br>
+              <em>IEEE WNYISPW</em>, 2022
+              <br> -->
+              <!-- <a href="https://sougato97.github.io/dhv/">project page</a> -->
+              <!-- /
+              <a href="https://github.com/wilchesf/dorsalhandveins">dataset ref</a> -->
+              <p></p>
+              <p>
+              I had taken deep interest in CSE 568 (Robotics Algorithm) during my Fall 2021 semester. 
+              Projects like "Implementation of Obstacle avoidance on the F1tenth virtual platform",
+              "Robot navigation using algorithms like Bug2" and "Finding the shortest path using A* algorithm" 
+              fortified my interest in this field. The theoritical aspects of a robot's behavior or especially the physics 
+              behind these systems are fascianting.
+
+            </td>
+          </tr>
+
+        <!-- 3rd project  -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr onmouseout="malle_stop()" onmouseover="malle_start()">
+
+            <tr onmouseout="nerfsuper_stop()" onmouseover="nerfsuper_start()">
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <div class="one">
+                  <div class="two" id='nerfsuper_image'>
+                  <video  width=100% height=100% muted autoplay loop>
+                  <source src="images/NAO6_VID.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                  </video></div>
+                  <img src='images/nao6.jpg' width="160">
+                </div>
+                <script type="text/javascript">
+                  function nerfsuper_start() {
+                    document.getElementById('nerfsuper_image').style.opacity = "1";
+                  }
+  
+                  function nerfsuper_stop() {
+                    document.getElementById('nerfsuper_image').style.opacity = "0";
+                  }
+                  nerfsuper_stop()
+                </script>
+              </td>
+
+              
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <!-- <a href="https://sougato97.github.io/dhv/"> -->
+                <papertitle>Working on Softbank <a href="https://www.aldebaran.com/en/nao">NAO6</a></papertitle>
+              <!-- </a> -->
+              <br>
+              <strong>Sougato Bagchi</strong>,
+              <a href="https://www.buffalo.edu/cubs/members.host.html/content/shared/engineering/computer-science-engineering/profiles/faculty/ladder/ratha-nalini.html" target="_blank">Nalini Ratha</a>
+              <br>
+              <!--<em>IEEE WNYISPW</em>, 2022
+              <br> -->
+              <!-- <a href="https://sougato97.github.io/dhv/">project page</a> -->
+              <!-- /
+              <a href="https://github.com/wilchesf/dorsalhandveins">dataset ref</a> -->
+              <p></p>
+              <p>
+              Understanding potential of the NAO, so that I can work on something that can help the 
+              older section of our society. Working on video extraction and possible person recognition so that
+              the robot behaves different in front of each person. 
+            </td>
+          </tr>
+
+          <!-- Reseacrh section -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Research Publications</heading>
+              <p> 
               </p>
             </td>
           </tr>
@@ -100,8 +270,8 @@
           <tr onmouseout="nerfsuper_stop()" onmouseover="nerfsuper_start()">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <div class="one">
-                <!-- <div class="two" id='nerfsuper_image'>
-                <video  width=100% height=100% muted autoplay loop>
+                <div class="two" id='nerfsuper_image'>
+                <!-- <video  width=100% height=100% muted autoplay loop>
                 <source src="images/nerf_supervision.mp4" type="video/mp4">
                 Your browser does not support the video tag.
                 </video></div> -->
