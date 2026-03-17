@@ -30,18 +30,17 @@
       <section class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Knowledge-Graphs | LLM Inference | multi-agent orchestration | healthcare AI</p>
-          <h1>Designing research-driven AI systems that still make sense in production.</h1>
+          <h1>Turning research ideas into AI systems that hold up in production.</h1>
           <p class="lede">
-            I work across multi-agent orchestration, retrieval-grounded AI, knowledge graphs, and open-source
-            LLM infrastructure. My recent work spans healthcare AI, semantic retrieval for long-form documents,
-            and deploying inference stacks that run well on both CUDA and ROCm.
+            Right now, I am working on LLM infrastructure, inference stacks, knowledge graphs, and retrieval
+            systems built on OLAP databases such as ClickHouse. A lot of my current work is around making
+            open-source small language models hyper-efficient at specific tasks across CUDA and ROCm, while
+            keeping retrieval systems fast, modular, and useful on messy real-world data.
           </p>
           <p class="hero-detail">
-            At <strong>fundae.ai</strong>, a B2B health-tech startup, I designed the control-agent. Its a multi-agent
-            plug and play system which improves latency and quality of retrieved data from the downstream agents.  
-            At <strong>Cozeva</strong>, I architected AI assistants and medical coding systems grounded in
-            real data. Right now, I am building retrieval systems, inference layers, and knowledge-graph workflows
-            that connect research ideas to useful products.
+            At <strong>fundae.ai</strong>, I designed the control-agent concept: an orchestration layer that
+            reduced latency and improved answer quality across downstream agents. At <strong>Cozeva</strong>, I
+            built data-grounded AI assistants and an ICD-10 medical-coding agent that cut manual coding effort.
           </p>
           <div class="hero-actions">
             <a class="button" href="data/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
@@ -70,10 +69,12 @@
           <img class="portrait" src="images/sougato_dp_circle.png" alt="Portrait of Sougato Bagchi">
           <div class="profile-panel-body">
             <p class="panel-kicker">Current work</p>
-            <h2>Independent applied ML systems project</h2>
+            <h2>Design systems that scale from local servers to the cloud.</h2>
             <p>
-              Building semantic retrieval pipelines for heterogeneous documents using chunk-level embeddings,
-              approximate nearest-neighbor search, reranking, and local multi-GPU model deployment.
+              Building a compact AI backbone from the ground up: custom indexing that combines PageRank-style
+              signals with approximate nearest-neighbor search to form knowledge graphs from public
+              information, alongside local multi-GPU inference stacks that make better use of RAM and VRAM
+              without pulling core model compute off the GPU.
             </p>
             <div class="tag-row">
               <span class="tag">ClickHouse + HNSW</span>
@@ -104,117 +105,6 @@
           <span class="metric-value">CUDA + ROCm</span>
           <span class="metric-label">Open-source inference stacks deployed and evaluated side by side</span>
         </article>
-      </section>
-
-      <section class="section" id="experience">
-        <div class="section-heading">
-          <p class="section-kicker">Education &amp; Experience</p>
-          <h2>A timeline of the systems, teams, and research tracks that shaped my work.</h2>
-          <p>
-            Recent work is front-loaded here, while older projects and publications are kept below in their own
-            chronological archive so nothing gets lost.
-          </p>
-        </div>
-
-        <div class="timeline">
-          <article class="timeline-item right work">
-            <div class="timeline-card">
-              <p class="timeline-date">Oct 2025 - Present</p>
-              <h3>Independent Applied ML Systems Project</h3>
-              <p class="timeline-role">Applied ML Systems Engineer</p>
-              <p>
-                Designed semantic retrieval for long-form, heterogeneous documents using chunk-level embeddings,
-                ANN search, agreement-based scoring, reranking, and local multi-GPU open-source model deployment.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left work">
-            <div class="timeline-card">
-              <p class="timeline-date">Apr 2025 - Nov 2025</p>
-              <h3>fundae.ai</h3>
-              <p class="timeline-role">Lead Cloud Solutions Architect | Founding Engineer</p>
-              <p>
-                Led agentic AI architecture for a B2B health-tech startup, mentoring early engineers and building
-                a multi-threaded control-signal-based orchestration framework connected to Salesforce, M365, D365,
-                and Trino.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item right work">
-            <div class="timeline-card">
-              <p class="timeline-date">Dec 2023 - Apr 2025</p>
-              <h3>Cozeva</h3>
-              <p class="timeline-role">Machine Learning Engineer</p>
-              <p>
-                Built HIPAA-compliant AI systems for enterprise healthcare workflows, including a GraphRAG-based
-                medical coding agent, multimodal retrieval pipelines, FastAPI inference services, and FHIR-oriented
-                integration work.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left education">
-            <div class="timeline-card">
-              <p class="timeline-date">Aug 2021 - Dec 2023</p>
-              <h3>University at Buffalo</h3>
-              <p class="timeline-role">M.S. in Computer Science</p>
-              <p>
-                Specialized in computer vision, deep learning for image processing, and robotics while working on
-                biometrics, low-light enhancement, HRI, and SLAM research.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item right work">
-            <div class="timeline-card">
-              <p class="timeline-date">Feb 2022 - Dec 2023</p>
-              <h3>University at Buffalo</h3>
-              <p class="timeline-role">Research Assistant</p>
-              <p>
-                Published work in low-light enhancement and dorsal hand vein biometrics, built an HRI framework
-                around GPT-3.5 and robotics APIs, and studied localization error in SLAM systems.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left work">
-            <div class="timeline-card">
-              <p class="timeline-date">Jun 2022 - Aug 2022</p>
-              <h3>Cozeva</h3>
-              <p class="timeline-role">Machine Learning Engineer Intern</p>
-              <p>
-                Engineered data pipelines for large-scale patient records, extracted features for predictive models,
-                and worked with Social Determinants of Health data in healthcare analytics.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item right work">
-            <div class="timeline-card">
-              <p class="timeline-date">May 2019 - Nov 2020</p>
-              <h3>Tata Consultancy Services</h3>
-              <p class="timeline-role">Assistant Systems Engineer - Data Analytics</p>
-              <p>
-                Supported GE Healthcare analytics workflows through Salesforce-based dashboards, client requirement
-                analysis, and SQL/reporting optimization.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left education">
-            <div class="timeline-card">
-              <p class="timeline-date">May 2015 - Apr 2019</p>
-              <h3>University of Engineering and Management, Kolkata</h3>
-              <p class="timeline-role">B.Tech. in Computer Science and Engineering</p>
-              <p>
-                Early focus on machine learning, image processing, and applied research, including published work
-                in survival prediction and weather-related modeling.
-              </p>
-            </div>
-          </article>
-        </div>
       </section>
 
       <section class="section" id="focus">
@@ -285,7 +175,7 @@
           </article>
 
           <article class="repo-card">
-            <p class="repo-kicker">Open source</p>
+            <p class="repo-kicker">Current systems work</p>
             <h3>Project-Pod</h3>
             <p>
               Early-stage work on building a knowledge graph of a person's professional information from public
@@ -293,25 +183,124 @@
             </p>
             <div class="tag-row">
               <span class="tag">Knowledge Graph</span>
-              <span class="tag">Public Data</span>
-              <span class="tag">Early-stage</span>
-            </div>
-            <a class="inline-link" href="https://github.com/rollingresearch/project-pod" target="_blank" rel="noreferrer">View repository</a>
-          </article>
-
-          <article class="repo-card">
-            <p class="repo-kicker">Current systems work</p>
-            <h3>Semantic Retrieval Pipeline</h3>
-            <p>
-              Long-form document retrieval with dual embeddings, ANN search, agreement-based scoring, and
-              reranking designed for heterogeneous documents and lower false-positive rates.
-            </p>
-            <div class="tag-row">
-              <span class="tag">ANN Search</span>
-              <span class="tag">Reranking</span>
-              <span class="tag">ClickHouse</span>
+              <span class="tag">LLM Inference</span>
+              <span class="tag">Query-Reranking</span>
             </div>
             <span class="inline-link inline-link-muted">Private / ongoing</span>
+            <!-- <a class="inline-link" href="https://github.com/rollingresearch/project-pod" target="_blank" rel="noreferrer">View repository</a> -->
+          </article>
+          
+        </div>
+      </section>
+
+
+      <section class="section" id="experience">
+        <div class="section-heading">
+          <p class="section-kicker">Education &amp; Experience</p>
+          <h2>A timeline of the systems, teams, and research tracks that shaped my work.</h2>
+          <p>
+            Recent work is front-loaded here, while older projects and publications are kept below in their own
+            chronological archive.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item right work">
+            <div class="timeline-card">
+              <p class="timeline-date">Oct 2025 - Present</p>
+              <h3>Applied ML Systems Project</h3>
+              <p class="timeline-role">Applied ML Systems Engineer</p>
+              <p>
+                Designed semantic retrieval for long-form, heterogeneous documents using chunk-level embeddings,
+                ANN search, agreement-based scoring, reranking, and local multi-GPU open-source model deployment.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item left work">
+            <div class="timeline-card">
+              <p class="timeline-date">Apr 2025 - Nov 2025</p>
+              <h3>fundae.ai</h3>
+              <p class="timeline-role">Lead Cloud Solutions Architect | Founding Engineer</p>
+              <p>
+                Led agentic AI architecture for a B2B health-tech startup, mentoring early engineers and building
+                a multi-threaded control-signal-based orchestration framework connected to Salesforce, M365, D365,
+                and Trino.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item right work">
+            <div class="timeline-card">
+              <p class="timeline-date">Dec 2023 - Apr 2025</p>
+              <h3>Cozeva</h3>
+              <p class="timeline-role">Machine Learning Engineer</p>
+              <p>
+                Built HIPAA-compliant AI systems for enterprise healthcare workflows, including a GraphRAG-based
+                medical coding agent, multimodal retrieval pipelines, FastAPI inference services, and FHIR-oriented
+                integration work.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item left education">
+            <div class="timeline-card">
+              <p class="timeline-date">Aug 2021 - Aug 2023</p>
+              <h3>University at Buffalo</h3>
+              <p class="timeline-role">M.S. in Computer Science</p>
+              <p>
+                Specialized in computer vision, deep learning for image processing, and robotics while working on
+                biometrics, low-light enhancement, HRI, and SLAM research.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item right work">
+            <div class="timeline-card">
+              <p class="timeline-date">Feb 2022 - Dec 2023</p>
+              <h3>University at Buffalo</h3>
+              <p class="timeline-role">Research Assistant</p>
+              <p>
+                Published work in low-light enhancement and dorsal hand vein biometrics, built an HRI framework
+                around GPT-3.5 and robotics APIs, and studied localization error in SLAM systems.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item left work">
+            <div class="timeline-card">
+              <p class="timeline-date">Jun 2022 - Aug 2022</p>
+              <h3>Cozeva</h3>
+              <p class="timeline-role">Machine Learning Engineer Intern</p>
+              <p>
+                Engineered data pipelines for large-scale patient records, extracted features for predictive models,
+                and worked with Social Determinants of Health data in healthcare analytics.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item right work">
+            <div class="timeline-card">
+              <p class="timeline-date">May 2019 - Nov 2020</p>
+              <h3>Tata Consultancy Services</h3>
+              <p class="timeline-role">Assistant Systems Engineer - Data Analytics</p>
+              <p>
+                Supported GE Healthcare analytics workflows through Salesforce-based dashboards, client requirement
+                analysis, and SQL/reporting optimization.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item left education">
+            <div class="timeline-card">
+              <p class="timeline-date">May 2015 - Apr 2019</p>
+              <h3>University of Engineering and Management, Kolkata</h3>
+              <p class="timeline-role">B.Tech. in Computer Science and Engineering</p>
+              <p>
+                Early focus on machine learning, image processing, and applied research, including published work
+                in survival prediction and weather-related modeling.
+              </p>
+            </div>
           </article>
         </div>
       </section>
