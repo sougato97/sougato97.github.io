@@ -21,24 +21,23 @@
           <a href="#experience">Experience</a>
           <a href="#focus">Focus</a>
           <a href="#work">Open Source</a>
-          <a href="#archive">Earlier Work</a>
-          <a href="#publications">Publications</a>
+          <a href="#archive">Archive</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
 
       <section class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Knowledge-Graphs | LLM Inference | multi-agent orchestration | healthcare AI</p>
+          <p class="eyebrow">Knowledge Graphs | LLM Inference | Multi-Agent Orchestration | Healthcare AI</p>
           <h1>Turning research ideas into AI systems that hold up in production.</h1>
           <p class="lede">
-            Right now, I am working on LLM infrastructure, inference stacks, knowledge graphs, and retrieval
-            systems built on OLAP databases such as ClickHouse. A lot of my current work is around making
-            open-source small language models hyper-efficient at specific tasks across CUDA and ROCm, while
-            keeping retrieval systems fast, modular, and useful on messy real-world data.
+            Right now, I work on LLM infrastructure, inference stacks, knowledge graphs, and retrieval systems 
+            backed by OLAP databases such as ClickHouse. Much of my current work is focused on making open-source 
+            small language models efficient for narrow tasks and deployable across CUDA and ROCm, while keeping 
+            retrieval systems fast, modular, and useful on messy real-world data.
           </p>
           <p class="hero-detail">
-            At <strong>fundae.ai</strong>, I designed the control-agent concept: an orchestration layer that
+            At <strong>fundae.ai</strong>, I designed the control agent concept: an orchestration layer that
             reduced latency and improved answer quality across downstream agents. At <strong>Cozeva</strong>, I
             built data-grounded AI assistants and an ICD-10 medical-coding agent that cut manual coding effort.
           </p>
@@ -52,7 +51,7 @@
           <ul class="hero-facts">
             <li>
               <span class="fact-label">Current track</span>
-              <span class="fact-value">Applied ML systems, retrieval, and inference infrastructure</span>
+              <span class="fact-value">LLM infrastructure, retrieval systems, and knowledge graphs</span>
             </li>
             <li>
               <span class="fact-label">Base</span>
@@ -71,10 +70,10 @@
             <p class="panel-kicker">Current work</p>
             <h2>Design systems that scale from local servers to the cloud.</h2>
             <p>
-              Building a compact AI backbone from the ground up: custom indexing that combines PageRank-style
+              Building a compact AI stack from the ground up: custom indexing that combines PageRank-style
               signals with approximate nearest-neighbor search to form knowledge graphs from public
               information, alongside local multi-GPU inference stacks that make better use of RAM and VRAM
-              without pulling core model compute off the GPU.
+              without moving core model computation off the GPU.
             </p>
             <div class="tag-row">
               <span class="tag">ClickHouse + HNSW</span>
@@ -91,7 +90,7 @@
       <section class="metric-strip" aria-label="Key highlights">
         <article class="metric-card">
           <span class="metric-value">75%+</span>
-          <span class="metric-label">Latency reduction on agentic orchestration at fundae.ai</span>
+          <span class="metric-label">Latency reduction in agent orchestration at fundae.ai</span>
         </article>
         <article class="metric-card">
           <span class="metric-value">60%</span>
@@ -110,7 +109,7 @@
       <section class="section" id="focus">
         <div class="section-heading">
           <p class="section-kicker">Current Focus</p>
-          <h2>What I am building now, and the problems I keep coming back to.</h2>
+          <h2>What I am building now and the problems I keep coming back to.</h2>
         </div>
 
         <div class="split-grid">
@@ -147,7 +146,7 @@
             <p class="repo-kicker">Open source</p>
             <h3>ModelServer</h3>
             <p>
-              Docker-first LLM inference stack spanning CUDA and ROCm, with work around vLLM, llama.cpp,
+              Docker-first LLM inference stack spanning CUDA and ROCm, covering vLLM, llama.cpp,
               deployment ergonomics, and model-serving evaluation.
             </p>
             <div class="tag-row">
@@ -163,7 +162,7 @@
             <p class="repo-kicker">Open source</p>
             <h3>Graphrag-OSS</h3>
             <p>
-              GraphRAG stack built with ClickHouse, open-source LLMs, and open-source embedding models for
+              GraphRAG stack built with ClickHouse, open-source LLM and embedding models for
               retrieval-heavy workflows.
             </p>
             <div class="tag-row">
@@ -178,8 +177,8 @@
             <p class="repo-kicker">Current systems work</p>
             <h3>Project-Pod</h3>
             <p>
-              Early-stage work on building a knowledge graph of a person's professional information from public
-              sources, with room for collaborators as it matures.
+              Early-stage work on building a knowledge graph from public professional information, with room for
+              collaborators as it matures.
             </p>
             <div class="tag-row">
               <span class="tag">Knowledge Graph</span>
@@ -223,9 +222,9 @@
               <h3>fundae.ai</h3>
               <p class="timeline-role">Lead Cloud Solutions Architect | Founding Engineer</p>
               <p>
-                Led agentic AI architecture for a B2B health-tech startup, mentoring early engineers and building
-                a multi-threaded control-signal-based orchestration framework connected to Salesforce, M365, D365,
-                and Trino.
+                Led AI systems architecture for a B2B health-tech startup, mentoring early engineers and building
+                a multi-threaded orchestration framework based on control signals and connected to Salesforce,
+                M365, D365, and Trino.
               </p>
             </div>
           </article>
@@ -307,54 +306,28 @@
 
       <section class="section" id="archive">
         <div class="section-heading">
-          <p class="section-kicker">Earlier Work</p>
-          <h2>Older projects kept intentionally, now reordered from oldest to newest.</h2>
+          <p class="section-kicker">Research &amp; Earlier Work</p>
+          <h2>Older research, projects, and publications kept in one chronological archive.</h2>
           <p>
-            These are the projects from the previous version of the site. I kept them here because they still show
-            the path from early research and robotics work into current AI systems engineering.
+            Some of these started as project work, some became publications, and a few were both. Keeping them in
+            one place makes the progression easier to read.
           </p>
         </div>
 
         <div class="archive-grid">
-          <article class="archive-card">
-            <img src="images/hcc_illustration.jpg" alt="Illustration for hepatocellular carcinoma survival prediction">
-            <div class="archive-copy">
-              <p class="year-badge">2018</p>
-              <h3>Hepatocellular Carcinoma Survival Prediction</h3>
-              <p>
-                Early publication work on survival prediction for HCC patients using deep neural networks.
-              </p>
-              <div class="inline-links">
-                <a href="https://sougato97.github.io/hcc/" target="_blank" rel="noreferrer">Project page</a>
-                <a href="https://sougato97.github.io/hcc/hcc_files/hcc.pdf" target="_blank" rel="noreferrer">Paper</a>
-              </div>
-            </div>
-          </article>
 
           <article class="archive-card">
-            <img src="images/rviz.png" alt="RViz view from robotics algorithms projects">
             <div class="archive-copy">
-              <p class="year-badge">2021</p>
-              <h3>Robotics Algorithm Projects</h3>
+              <p class="year-badge">2023</p>
+              <h3>Low-Light Exposure Correction and Image Enhancement</h3>
               <p>
-                Course work around F1TENTH-style obstacle avoidance, Bug2 navigation, and A* path planning that
-                deepened my interest in robot behavior and system dynamics.
-              </p>
-            </div>
-          </article>
-
-          <article class="archive-card">
-            <img src="images/DHV_image_infrared.jpg" alt="Infrared dorsal hand vein image">
-            <div class="archive-copy">
-              <p class="year-badge">2022</p>
-              <h3>Dorsal Hand Vein Recognition</h3>
-              <p>
-                Non-contact biometric recognition using infrared imagery and deep learning, later presented at
-                IEEE WNYISPW 2022.
+                ESRGAN-based low-light visibility improvement using synthetic data derived by reverse-engineering ISP
+                outputs, published through IEEE and ProQuest as part of graduate research.
               </p>
               <div class="inline-links">
-                <a href="https://sougato97.github.io/dhv/" target="_blank" rel="noreferrer">Project page</a>
-                <a href="https://ieeexplore.ieee.org/abstract/document/9982726?casa_token=sX74-hmGMjEAAAAA:Qgs2Km7kEvQIhcmuWsaA4m8LZfu6-2wUsWm8E0OADNQHbtDZinycdLd81wVzdKvX7GT7XnY8EcjI" target="_blank" rel="noreferrer">Paper</a>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10349536" target="_blank" rel="noreferrer">Paper</a>
+                <a href="https://www.proquest.com/docview/2866002308" target="_blank" rel="noreferrer">Thesis</a>
+                <a href="https://github.com/sougato97/image_enhancement" target="_blank" rel="noreferrer">Code</a>
               </div>
             </div>
           </article>
@@ -369,7 +342,8 @@
                 Dynamics Spot using face, voice, and control signals.
               </p>
               <div class="inline-links">
-                <a href="https://github.com/hcicsebuffalo/nao_dev_LLM" target="_blank" rel="noreferrer">Repository</a>
+                <a href="https://github.com/hcicsebuffalo/nao_dev_LLM" target="_blank" rel="noreferrer">NAO + Pepper Repository</a>
+                <a href="https://github.com/hcicsebuffalo/spot_dev" target="_blank" rel="noreferrer">Spot Repository</a>
               </div>
             </div>
           </article>
@@ -377,7 +351,7 @@
           <article class="archive-card">
             <img src="images/open_vins_gt_vs_vio.png" alt="Ground truth versus visual-inertial odometry plot">
             <div class="archive-copy">
-              <p class="year-badge">2023</p>
+              <p class="year-badge">2022</p>
               <h3>Characterization of SLAM Systems</h3>
               <p>
                 Detailed OpenVINS and EKF-SLAM study focused on ATE, hardware behavior, and comparisons against
@@ -388,35 +362,12 @@
               </div>
             </div>
           </article>
-        </div>
-      </section>
 
-      <section class="section" id="publications">
-        <div class="section-heading">
-          <p class="section-kicker">Publications</p>
-          <h2>Selected published and thesis-backed research.</h2>
-        </div>
 
-        <div class="publication-list">
-          <article class="publication-item">
-            <p class="publication-year">2023</p>
-            <div>
-              <h3>Low-light exposure correction and image enhancement research</h3>
-              <p>
-                ESRGAN-based low-light visibility improvement work using synthetic data from reverse-engineered ISP
-                outputs; published through IEEE and ProQuest as part of graduate research.
-              </p>
-              <div class="inline-links">
-                <a href="https://ieeexplore.ieee.org/abstract/document/10349536" target="_blank" rel="noreferrer">Paper</a>
-                <a href="https://www.proquest.com/docview/2866002308" target="_blank" rel="noreferrer">Thesis</a>
-                <a href="https://github.com/sougato97/image_enhancement" target="_blank" rel="noreferrer">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="publication-item">
-            <p class="publication-year">2022</p>
-            <div>
+          <article class="archive-card">
+            <img src="images/DHV_image_infrared.jpg" alt="Infrared dorsal hand vein image">
+            <div class="archive-copy">
+              <p class="year-badge">2022</p>
               <h3>On Deep Learning for Dorsal Hand Vein Recognition</h3>
               <p>
                 IEEE WNYISPW publication on dorsal hand vein biometrics using deep learning and infrared imaging.
@@ -428,12 +379,24 @@
             </div>
           </article>
 
-          <article class="publication-item">
-            <p class="publication-year">2018</p>
-            <div>
-              <h3>Hepatocellular Carcinoma Survival Prediction Using Deep Neural Network</h3>
+          <article class="archive-card">
+            <img src="images/rviz.png" alt="RViz view from robotics algorithms projects">
+            <div class="archive-copy">
+              <p class="year-badge">2021</p>
+              <h3>Robotics Algorithm Projects</h3>
               <p>
-                Earlier publication work on predictive modeling for HCC survivability using neural approaches.
+                Coursework around F1TENTH-style obstacle avoidance, Bug2 navigation, and A* path planning that
+                deepened my interest in robot behavior and system dynamics.
+              </p>
+            </div>
+          </article>
+          <article class="archive-card">
+            <img src="images/hcc_illustration.jpg" alt="Illustration for hepatocellular carcinoma survival prediction">
+            <div class="archive-copy">
+              <p class="year-badge">2018</p>
+              <h3>Hepatocellular Carcinoma Survival Prediction Using Deep Neural Networks</h3>
+              <p>
+                Early publication work on survival prediction for HCC patients using deep neural networks.
               </p>
               <div class="inline-links">
                 <a href="https://sougato97.github.io/hcc/" target="_blank" rel="noreferrer">Project page</a>
