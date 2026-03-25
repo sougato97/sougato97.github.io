@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Sougato Bagchi">
+  <meta name="description" content="An essay by Sougato Bagchi on whether invention can be modeled as a process, and what that might mean for future AI systems.">
+  <title>How Do We Think, and How Do We Invent? | Sougato Bagchi</title>
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = savedTheme || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (error) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../stylesheet.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141f2d'/%3E%3Ctext x='50' y='62' font-size='48' text-anchor='middle' fill='%23f7f3ea' font-family='Arial, sans-serif'%3ESB%3C/text%3E%3C/svg%3E">
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="page-frame">
+    <header class="hero hero-article" id="top">
+      <nav class="topbar" aria-label="Article navigation">
+        <a class="brand" href="../../index.html#top">Sougato Bagchi</a>
+        <div class="nav-links">
+          <a href="../../index.html#blog">Blog</a>
+          <a href="../../index.html#focus">Focus</a>
+          <a href="../../index.html#work">Open Source</a>
+          <a href="../../index.html#contact">Contact</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+            <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+          </button>
+        </div>
+      </nav>
+
+      <section class="article-header">
+        <a class="back-link" href="../../index.html#blog">Back to blog</a>
+        <p class="eyebrow">Essay</p>
+        <h1>How Do We Think, and How Do We Invent?</h1>
+        <p class="lede article-lede">
+          I keep coming back to a simple question: if invention is not random, can we understand it as a process
+          with structure? And if we can, what would that mean for the next generation of AI systems?
+        </p>
+        <div class="article-meta" aria-label="Article metadata">
+          <span>March 25, 2026</span>
+          <span>Thinking, creativity, model design</span>
+          <span>Supports LaTeX equations</span>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="section article-shell">
+        <article class="article-card">
+          <p>
+            I do not mean this in a mystical way. I mean it as an engineering question. People do not invent in
+            a vacuum. We observe, compress, compare, borrow, reject, combine, and then test. Some inventions are
+            flashes of insight, but even those flashes usually arrive after a long period of structured exposure.
+          </p>
+          <p>
+            So the question is not whether thinking is magical. The question is whether there is enough structure
+            inside thought that we can model parts of it without flattening what makes it human.
+          </p>
+
+          <h2>A rough way to frame invention</h2>
+          <p>
+            A useful starting point is to treat invention as a function of memory, abstraction, analogy,
+            constraint, and taste. I am not claiming this is <em>the</em> equation. I am saying it is a good way
+            to reason about the problem.
+          </p>
+
+          <div class="equation-block">
+            \[
+              \text{invention} \approx f(\text{memory},\; \text{abstraction},\; \text{analogy},\; \text{constraint},\; \text{taste})
+            \]
+          </div>
+
+          <p>
+            Memory matters because nothing new is created from nothing. Abstraction matters because raw facts are
+            not enough; we need compressed forms that transfer across domains. Analogy matters because many useful
+            inventions are really clean mappings between two things that previously looked unrelated. Constraint
+            matters because useful solutions are shaped by budgets, hardware, time, and the messiness of the real
+            world. Taste matters because not every valid combination is interesting.
+          </p>
+
+          <h2>What current models are already good at</h2>
+          <p>
+            Present-generation models are already strong at recall, recombination, and compression. They can pull
+            patterns out of large corpora, summarize them, and produce plausible continuations. That alone is why
+            they are useful. In practice, a lot of good engineering work is exactly that: turning broad prior
+            knowledge into something sharp enough for a local problem.
+          </p>
+          <p>
+            In other words, models already do part of the job. They are not blank autocomplete systems anymore.
+            They are pattern compressors with a useful amount of transfer.
+          </p>
+
+          <h2>Where they still feel limited</h2>
+          <p>
+            The gap shows up when novelty has to stay coherent over time. A system can generate many reasonable
+            ideas, but invention usually requires more than local plausibility. It needs persistent pressure across
+            steps: remembering what has already been tried, rejecting weak branches, preserving good constraints,
+            and pushing toward something both new and useful.
+          </p>
+          <p>
+            That is where the question becomes interesting. Maybe the frontier is not just larger pretraining. It
+            may also involve better memory structures, stronger world models, cleaner decomposition of subproblems,
+            and architectures that can revisit their own intermediate reasoning without collapsing into noise.
+          </p>
+
+          <h2>A toy objective</h2>
+          <p>
+            If I were forced to write down a crude target for invention, it would look something like this:
+          </p>
+
+          <div class="equation-block">
+            \[
+              I(x) = \text{novelty}(x) \cdot \text{usefulness}(x) \cdot \text{coherence}(x)
+            \]
+          </div>
+
+          <p>
+            This is obviously incomplete, but it helps. High novelty without usefulness is noise. Usefulness
+            without novelty is routine optimization. Novelty and usefulness without coherence usually break during
+            execution. If a future model class gets better at balancing all three, we may start calling it
+            inventive for reasons that are harder to dismiss.
+          </p>
+
+          <h2>Why I care about this</h2>
+          <p>
+            I care because this question is not only philosophical. It changes how we build systems today. If
+            invention depends on memory, structure, and constraints, then retrieval, decomposition, and data design
+            are not side issues. They are part of the path toward more capable systems.
+          </p>
+          <p>
+            That is also why I keep thinking about knowledge graphs, retrieval layers, and modular inference
+            systems. If we want models to become better at creating genuinely useful ideas, we probably need to
+            help them hold cleaner state, interact with better memory, and reason across better-structured worlds.
+          </p>
+
+          <h2>Where I would push next</h2>
+          <p>
+            I would look at systems that separate memory from inference more clearly, keep richer intermediate
+            state, and let models operate over structured representations instead of only dense text. I would also
+            look at whether invention needs explicit search over idea space rather than one-pass generation.
+          </p>
+          <p>
+            If that sounds like a mix of model design, retrieval systems, and systems engineering, that is because
+            it probably is.
+          </p>
+        </article>
+      </section>
+
+      <section class="section" id="comments">
+        <div class="section-heading">
+          <p class="section-kicker">Comments</p>
+          <h2>Discuss on GitHub.</h2>
+          <p>
+            This page supports GitHub-based comments. LinkedIn does not offer a native embedded comments widget for
+            a page like this, so LinkedIn discussion would need to happen through a separate post.
+          </p>
+        </div>
+
+        <div class="article-card comments-card">
+          <p class="comment-note">
+            If the widget does not load the first time, install the <a href="https://github.com/apps/utterances" target="_blank" rel="noreferrer">Utterances GitHub app</a>
+            for this repository once, and GitHub users will be able to comment directly here.
+          </p>
+          <div class="comments-host" id="comments-host"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contact">
+      <div>
+        <p class="footer-kicker">Contact</p>
+        <h2>Open to conversations around research and its practical application in AI systems.</h2>
+        <p>
+          If this overlaps with what you are building, or if you want to discuss the article, feel free to reach
+          out.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:sougato97@gmail.com">sougato97@gmail.com</a>
+        <a href="https://www.linkedin.com/in/sougato/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://github.com/sougato97" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=5L6iC3MAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer">Google Scholar</a>
+        <a href="../../data/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.querySelector(".theme-toggle");
+      if (!toggle) return;
+
+      var icon = toggle.querySelector(".theme-toggle-icon");
+
+      function applyToggleState() {
+        var isDark = root.getAttribute("data-theme") === "dark";
+        toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+        toggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+        toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        icon.textContent = isDark ? "☀" : "☾";
+      }
+
+      function renderComments() {
+        var host = document.getElementById("comments-host");
+        if (!host) return;
+
+        host.innerHTML = "";
+        var script = document.createElement("script");
+        script.src = "https://utteranc.es/client.js";
+        script.async = true;
+        script.setAttribute("repo", "sougato97/sougato97.github.io");
+        script.setAttribute("issue-term", "pathname");
+        script.setAttribute("label", "blog-comment");
+        script.setAttribute("theme", root.getAttribute("data-theme") === "dark" ? "github-dark" : "github-light");
+        script.setAttribute("crossorigin", "anonymous");
+        host.appendChild(script);
+      }
+
+      applyToggleState();
+      renderComments();
+
+      toggle.addEventListener("click", function () {
+        var nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", nextTheme);
+        localStorage.setItem("theme", nextTheme);
+        applyToggleState();
+        renderComments();
+      });
+    })();
+  </script>
+</body>
+</html>
