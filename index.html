@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Sougato Bagchi">
-  <meta name="description" content="Sougato Bagchi builds AI systems across multi-agent orchestration, GraphRAG, open-source LLM infrastructure, and applied machine learning.">
-  <title>Sougato Bagchi | AI Systems Engineer</title>
+  <meta name="author" content="Portfolio Owner">
+  <meta name="description" content="Personal portfolio website.">
+  <title>Portfolio</title>
   <script>
     (function () {
       try {
@@ -23,12 +23,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141f2d'/%3E%3Ctext x='50' y='62' font-size='48' text-anchor='middle' fill='%23f7f3ea' font-family='Arial, sans-serif'%3ESB%3C/text%3E%3C/svg%3E">
+  <script type="module" src="utils/site/page.js"></script>
 </head>
 <body>
   <div class="page-frame">
     <header class="hero" id="top">
       <nav class="topbar" aria-label="Primary">
-        <a class="brand" href="#top">Sougato Bagchi</a>
+        <a class="brand" href="#top" id="site-brand">Sougato Bagchi</a>
         <div class="nav-links">
           <a href="#experience">Experience</a>
           <a href="#focus">Focus</a>
@@ -42,479 +43,71 @@
         </div>
       </nav>
 
-      <section class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Knowledge Graphs | System Design | Healthcare AI</p>
-          <h1>Turning research ideas into AI systems that hold up in production.</h1>
-          <p class="lede">
-            Right now, I work on LLM infrastructure, inference stacks, knowledge graphs, and retrieval systems 
-            backed by OLAP databases such as ClickHouse. Much of my current work is focused on making open-source 
-            small language models efficient for narrow tasks and deployable across CUDA and ROCm, while keeping 
-            retrieval systems fast, modular, and useful on messy real-world data.
-          </p>
-          <p class="hero-detail">
-            At <strong>fundae.ai</strong>, I designed the control agent concept: an orchestration layer that
-            reduced latency and improved answer quality across downstream agents. At <strong>Cozeva</strong>, I
-            built data-grounded AI assistants and an ICD-10 medical-coding agent that cut manual coding effort.
-          </p>
-          <div class="hero-actions">
-            <a class="button icon-button" href="data/resume.pdf" target="_blank" rel="noreferrer" aria-label="Resume" title="Resume">
-              <img src="icons/resume.svg" alt="">
-            </a>
-            <a class="button button-secondary icon-button" href="mailto:sougato97@gmail.com" aria-label="Email" title="Email">
-              <img src="icons/email.svg" alt="">
-            </a>
-            <a class="button button-secondary icon-button" href="https://github.com/sougato97" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
-              <img src="icons/github.svg" alt="">
-            </a>
-            <a class="button button-secondary icon-button" href="https://www.linkedin.com/in/sougato/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
-              <img src="icons/linkedin.svg" alt="">
-            </a>
-            <a class="button button-secondary icon-button" href="https://scholar.google.com/citations?user=5L6iC3MAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar">
-              <img src="icons/scholar.svg" alt="">
-            </a>
-          </div>
-          <ul class="hero-facts">
-            <li>
-              <span class="fact-label">Current track</span>
-              <span class="fact-value">LLM infrastructure, retrieval systems, and knowledge graphs</span>
-            </li>
-            <li>
-              <span class="fact-label">Base</span>
-              <span class="fact-value">Salem, Oregon</span>
-            </li>
-            <li>
-              <span class="fact-label">Core stack</span>
-              <span class="fact-value">Python, C++, ClickHouse, Docker, CUDA, ROCm, GraphRAG</span>
-            </li>
-          </ul>
-        </div>
-
-        <aside class="profile-panel">
-          <img class="portrait" src="images/sougato_dp_circle.png" alt="Portrait of Sougato Bagchi">
-          <div class="profile-panel-body">
-            <p class="panel-kicker">Current work</p>
-            <h2>Design systems that scale from local servers to the cloud.</h2>
-            <p>
-              Building a compact AI stack from the ground up: custom indexing that combines PageRank-style
-              signals with approximate nearest-neighbor search to form knowledge graphs from public
-              information, alongside local multi-GPU inference stacks that make better use of RAM and VRAM
-              without moving core model computation off the GPU.
-            </p>
-            <div class="tag-row">
-              <span class="tag">ClickHouse + HNSW</span>
-              <span class="tag">vLLM / llama.cpp</span>
-              <span class="tag">CUDA + ROCm</span>
-              <span class="tag">GraphRAG</span>
-            </div>
-          </div>
-        </aside>
+      <section class="hero-grid" id="hero-content">
+        <p class="lede">Loading profile...</p>
       </section>
     </header>
 
     <main>
-      <section class="metric-strip" aria-label="Key highlights">
+      <section class="metric-strip" aria-label="Key highlights" id="highlights-content">
         <article class="metric-card">
-          <span class="metric-value">75%+</span>
-          <span class="metric-label">Latency reduction in agent orchestration at fundae.ai</span>
-        </article>
-        <article class="metric-card">
-          <span class="metric-value">60%</span>
-          <span class="metric-label">Reduction in medical coding cycle time at Cozeva</span>
-        </article>
-        <article class="metric-card">
-          <span class="metric-value">100+ GB</span>
-          <span class="metric-label">US pharma data processed in multi-agent workflows</span>
-        </article>
-        <article class="metric-card">
-          <span class="metric-value">CUDA + ROCm</span>
-          <span class="metric-label">Open-source inference stacks deployed and evaluated side by side</span>
+          <span class="metric-value">...</span>
+          <span class="metric-label">Loading highlights...</span>
         </article>
       </section>
 
       <section class="section" id="blog">
-        <div class="section-heading">
-          <p class="section-kicker">Blog</p>
-          <h2>Notes I am writing as I build, read, and explore.</h2>
-          <p>
-            My view is simple: artificial intelligence should make people happier and more effective.
-          </p>
-        </div>
-
-        <div class="repo-grid">
-          <article class="repo-card">
-            <p class="repo-kicker">Published</p>
-            <h3>How Do We Think, and How Do We Invent?</h3>
-            <p>
-              Let’s explore whether creativity can be modeled without losing what makes it human, and whether that
-              is the next frontier for AI models.
-            </p>
-            <a class="inline-link" href="blog/how-do-we-think-and-invent/">Read article</a>
-          </article>
-
-          <article class="repo-card">
-            <p class="repo-kicker">In progress</p>
-            <h3>The Consumerism of Information</h3>
-            <p>
-              It is 2026, and agent-based automation is changing how we consume information. But as information
-              becomes easier to access and summarize, are we still thinking deeply for ourselves?
-            </p>
-            <span class="inline-link inline-link-muted">Draft</span>
-          </article>
-
-          <!-- <article class="repo-card">
-            <p class="repo-kicker">In progress</p>
-            <h3>Why Separation of Concerns Matters in AI System Design</h3>
-            <p>
-              A practical view of how cleaner data boundaries make architectures easier to extend, debug, and reason
-              about.
-            </p>
-            <span class="inline-link inline-link-muted">Draft</span>
-          </article> -->
-
-          <article class="repo-card">
-            <p class="repo-kicker">In progress</p>
-            <h3>Using RAM and VRAM Together in Local Inference Stacks</h3>
-            <p>
-              What I am learning about memory placement, model loading, and keeping the GPU focused on the core
-              computation.
-            </p>
-            <span class="inline-link inline-link-muted">Draft</span>
-          </article>
+        <div id="blog-content">
+          <div class="section-heading">
+            <p class="section-kicker">Blog</p>
+            <h2>Loading blog notes...</h2>
+          </div>
         </div>
       </section>
 
       <section class="section" id="focus">
-        <div class="section-heading">
-          <p class="section-kicker">Current Focus</p>
-          <h2>What I am building now and the problems I keep coming back to.</h2>
-        </div>
-
-        <div class="split-grid">
-          <article class="panel-card">
-            <h3>I am exploring</h3>
-            <ul class="bullet-list">
-              <li>Knowledge graphs built from public information and professional context.</li>
-              <li>LLM inference layers that use RAM, VRAM, and GPU compute more intelligently.</li>
-              <li>Reasoning-oriented neural architectures, including the idea of <code>IDEA-AS-A-TOKEN</code>.</li>
-              <li>Neuromorphic computing as a reference point for future model design.</li>
-            </ul>
-          </article>
-
-          <article class="panel-card">
-            <h3>What guides my work</h3>
-            <ul class="bullet-list">
-              <li>I spend a lot of time reading research papers, then checking which ideas actually survive real systems.</li>
-              <li>I borrow from strong engineering practices in distributed systems, databases, and infrastructure.</li>
-              <li>I care a lot about clear separation of concerns, especially from the data side, because it makes system architecture easier to design, extend, and maintain.</li>
-              <li>I like building systems that remove repetitive manual work and make people noticeably more effective in their day-to-day workflows.</li>
-            </ul>
-          </article>
+        <div id="focus-content">
+          <div class="section-heading">
+            <p class="section-kicker">Current Focus</p>
+            <h2>Loading current focus...</h2>
+          </div>
         </div>
       </section>
 
       <section class="section" id="work">
-        <div class="section-heading">
-          <p class="section-kicker">Selected Systems &amp; Open Source</p>
-          <h2>Projects that reflect how I think about infrastructure, agents, and retrieval.</h2>
-        </div>
-
-        <div class="repo-grid">
-          <article class="repo-card">
-            <p class="repo-kicker">Open source</p>
-            <h3>ModelServer</h3>
-            <p>
-              Docker-first LLM inference stack spanning CUDA and ROCm, covering vLLM, llama.cpp,
-              deployment ergonomics, and model-serving evaluation.
-            </p>
-            <div class="tag-row">
-              <span class="tag">CUDA</span>
-              <span class="tag">ROCm</span>
-              <span class="tag">vLLM</span>
-              <span class="tag">llama.cpp</span>
-            </div>
-            <a class="inline-link" href="https://github.com/sougato97/ModelServer" target="_blank" rel="noreferrer">View repository</a>
-          </article>
-
-          <article class="repo-card">
-            <p class="repo-kicker">Open source</p>
-            <h3>Graphrag-OSS</h3>
-            <p>
-              GraphRAG stack built with ClickHouse, open-source LLM and embedding models for
-              retrieval-heavy workflows.
-            </p>
-            <div class="tag-row">
-              <span class="tag">GraphRAG</span>
-              <span class="tag">ClickHouse</span>
-              <span class="tag">Embeddings</span>
-            </div>
-            <a class="inline-link" href="https://github.com/sougato97/graphrag" target="_blank" rel="noreferrer">View repository</a>
-          </article>
-
-          <article class="repo-card">
-            <p class="repo-kicker">Current systems work</p>
-            <h3>Project-Pod</h3>
-            <p>
-              Early-stage work on building a knowledge graph from public professional information, with room for
-              collaborators as it matures.
-            </p>
-            <div class="tag-row">
-              <span class="tag">Knowledge Graph</span>
-              <span class="tag">LLM Inference</span>
-              <span class="tag">Query-Reranking</span>
-            </div>
-            <span class="inline-link inline-link-muted">Private / ongoing</span>
-            <!-- <a class="inline-link" href="https://github.com/rollingresearch/project-pod" target="_blank" rel="noreferrer">View repository</a> -->
-          </article>
-          
+        <div id="work-content">
+          <div class="section-heading">
+            <p class="section-kicker">Selected Systems &amp; Open Source</p>
+            <h2>Loading open-source work...</h2>
+          </div>
         </div>
       </section>
 
-
       <section class="section" id="experience">
-        <div class="section-heading">
-          <p class="section-kicker">Education &amp; Experience</p>
-          <h2>A timeline of the systems, teams, and research tracks that shaped my work.</h2>
-          <p>
-            Recent work is front-loaded here, while older projects and publications are kept below in their own
-            chronological archive.
-          </p>
-        </div>
-
-        <div class="timeline">
-          <article class="timeline-item right work">
-            <div class="timeline-card">
-              <p class="timeline-date">Oct 2025 - Present</p>
-              <h3>Applied ML Systems Project</h3>
-              <p class="timeline-role">Applied ML Systems Engineer</p>
-              <p>
-                Designed semantic retrieval for long-form, heterogeneous documents using chunk-level embeddings,
-                ANN search, agreement-based scoring, reranking, and local multi-GPU open-source model deployment.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left work">
-            <div class="timeline-card">
-              <p class="timeline-date">Apr 2025 - Nov 2025</p>
-              <h3>fundae.ai</h3>
-              <p class="timeline-role">Lead Cloud Solutions Architect | Founding Engineer</p>
-              <p>
-                Led AI systems architecture for a B2B health-tech startup, mentoring early engineers and building
-                a multi-threaded orchestration framework based on control signals and connected to Salesforce,
-                M365, D365, and Trino.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item right work">
-            <div class="timeline-card">
-              <p class="timeline-date">Dec 2023 - Apr 2025</p>
-              <h3>Cozeva</h3>
-              <p class="timeline-role">Machine Learning Engineer</p>
-              <p>
-                Built HIPAA-compliant AI systems for enterprise healthcare workflows, including a GraphRAG-based
-                medical coding agent, multimodal retrieval pipelines, FastAPI inference services, and FHIR-oriented
-                integration work.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left work">
-            <div class="timeline-card">
-              <p class="timeline-date">Feb 2024 - Feb 2025</p>
-              <h3>dspcoder.com</h3>
-              <p class="timeline-role">Co-Founder</p>
-              <p>
-                Built a cloud-based coding platform for embedded engineers, with workspaces for small projects
-                focused on low-level fundamentals. Marked my first end-to-end cloud systems design effort on
-                Microsoft Azure, where I co-designed the backend architecture with the founding team and helped
-                shape the platform's question set.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item right education">
-            <div class="timeline-card">
-              <p class="timeline-date">Aug 2021 - Aug 2023</p>
-              <h3>University at Buffalo</h3>
-              <p class="timeline-role">M.S. in Computer Science</p>
-              <p>
-                Specialized in computer vision, deep learning for image processing, and robotics while working on
-                biometrics, low-light enhancement, HRI, and SLAM research.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left work">
-            <div class="timeline-card">
-              <p class="timeline-date">Feb 2022 - Dec 2023</p>
-              <h3>University at Buffalo</h3>
-              <p class="timeline-role">Research Assistant</p>
-              <p>
-                Published work in low-light enhancement and dorsal hand vein biometrics, built an HRI framework
-                around GPT-3.5 and robotics APIs, and studied localization error in SLAM systems.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item right work">
-            <div class="timeline-card">
-              <p class="timeline-date">Jun 2022 - Aug 2022</p>
-              <h3>Cozeva</h3>
-              <p class="timeline-role">Machine Learning Engineer Intern</p>
-              <p>
-                Engineered data pipelines for large-scale patient records, extracted features for predictive models,
-                and worked with Social Determinants of Health data in healthcare analytics.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item left work">
-            <div class="timeline-card">
-              <p class="timeline-date">May 2019 - Nov 2020</p>
-              <h3>Tata Consultancy Services</h3>
-              <p class="timeline-role">Assistant Systems Engineer - Data Analytics</p>
-              <p>
-                Supported GE Healthcare analytics workflows through Salesforce-based dashboards, client requirement
-                analysis, and SQL/reporting optimization.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item right education">
-            <div class="timeline-card">
-              <p class="timeline-date">May 2015 - Apr 2019</p>
-              <h3>University of Engineering and Management, Kolkata</h3>
-              <p class="timeline-role">B.Tech. in Computer Science and Engineering</p>
-              <p>
-                Early focus on machine learning, image processing, and applied research, including published work
-                in survival prediction and weather-related modeling.
-              </p>
-            </div>
-          </article>
+        <div id="experience-content">
+          <div class="section-heading">
+            <p class="section-kicker">Education &amp; Experience</p>
+            <h2>Loading experience...</h2>
+          </div>
         </div>
       </section>
 
       <section class="section" id="archive">
-        <div class="section-heading">
-          <p class="section-kicker">Research &amp; Earlier Work</p>
-          <h2>Older research, projects, and publications kept in one chronological archive.</h2>
-          <p>
-            Some of these started as project work, some became publications, and a few were both. Keeping them in
-            one place makes the progression easier to read.
-          </p>
-        </div>
-
-        <div class="archive-grid">
-
-          <article class="archive-card">
-            <div class="archive-copy">
-              <p class="year-badge">2023</p>
-              <h3>Low-Light Exposure Correction and Image Enhancement</h3>
-              <p>
-                ESRGAN-based low-light visibility improvement using synthetic data derived by reverse-engineering ISP
-                outputs, published through IEEE and ProQuest as part of graduate research.
-              </p>
-              <div class="inline-links">
-                <a href="https://ieeexplore.ieee.org/abstract/document/10349536" target="_blank" rel="noreferrer">Paper</a>
-                <a href="https://www.proquest.com/docview/2866002308" target="_blank" rel="noreferrer">Thesis</a>
-                <a href="https://github.com/sougato97/image_enhancement" target="_blank" rel="noreferrer">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="archive-card">
-            <img src="images/nao6.jpg" alt="NAO humanoid robot used in human-robot interaction projects">
-            <div class="archive-copy">
-              <p class="year-badge">2022 - 2023</p>
-              <h3>Human-Robot Interaction Projects</h3>
-              <p>
-                Person-specific robot behaviors and authentication workflows built around NAO, Pepper, and Boston
-                Dynamics Spot using face, voice, and control signals.
-              </p>
-              <div class="inline-links">
-                <a href="https://github.com/hcicsebuffalo/nao_dev_LLM" target="_blank" rel="noreferrer">NAO + Pepper Repository</a>
-                <a href="https://github.com/hcicsebuffalo/spot_dev" target="_blank" rel="noreferrer">Spot Repository</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="archive-card">
-            <img src="images/open_vins_gt_vs_vio.png" alt="Ground truth versus visual-inertial odometry plot">
-            <div class="archive-copy">
-              <p class="year-badge">2022</p>
-              <h3>Characterization of SLAM Systems</h3>
-              <p>
-                Detailed OpenVINS and EKF-SLAM study focused on ATE, hardware behavior, and comparisons against
-                ORB-SLAM2 and other state-of-the-art systems.
-              </p>
-              <div class="inline-links">
-                <a href="data/CSE_702_REPORT.pdf" target="_blank" rel="noreferrer">Project report</a>
-              </div>
-            </div>
-          </article>
-
-
-          <article class="archive-card">
-            <img src="images/DHV_image_infrared.jpg" alt="Infrared dorsal hand vein image">
-            <div class="archive-copy">
-              <p class="year-badge">2022</p>
-              <h3>On Deep Learning for Dorsal Hand Vein Recognition</h3>
-              <p>
-                IEEE WNYISPW publication on dorsal hand vein biometrics using deep learning and infrared imaging.
-              </p>
-              <div class="inline-links">
-                <a href="https://sougato97.github.io/dhv/" target="_blank" rel="noreferrer">Project page</a>
-                <a href="https://ieeexplore.ieee.org/abstract/document/9982726?casa_token=sX74-hmGMjEAAAAA:Qgs2Km7kEvQIhcmuWsaA4m8LZfu6-2wUsWm8E0OADNQHbtDZinycdLd81wVzdKvX7GT7XnY8EcjI" target="_blank" rel="noreferrer">Paper</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="archive-card">
-            <img src="images/rviz.png" alt="RViz view from robotics algorithms projects">
-            <div class="archive-copy">
-              <p class="year-badge">2021</p>
-              <h3>Robotics Algorithm Projects</h3>
-              <p>
-                Coursework around F1TENTH-style obstacle avoidance, Bug2 navigation, and A* path planning that
-                deepened my interest in robot behavior and system dynamics.
-              </p>
-            </div>
-          </article>
-          <article class="archive-card">
-            <img src="images/hcc_illustration.jpg" alt="Illustration for hepatocellular carcinoma survival prediction">
-            <div class="archive-copy">
-              <p class="year-badge">2018</p>
-              <h3>Hepatocellular Carcinoma Survival Prediction Using Deep Neural Networks</h3>
-              <p>
-                Early publication work on survival prediction for HCC patients using deep neural networks.
-              </p>
-              <div class="inline-links">
-                <a href="https://sougato97.github.io/hcc/" target="_blank" rel="noreferrer">Project page</a>
-                <a href="https://sougato97.github.io/hcc/hcc_files/hcc.pdf" target="_blank" rel="noreferrer">Paper</a>
-              </div>
-            </div>
-          </article>
+        <div id="archive-content">
+          <div class="section-heading">
+            <p class="section-kicker">Research &amp; Earlier Work</p>
+            <h2>Loading archive...</h2>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer" id="contact">
-      <div>
-        <p class="footer-kicker">Contact</p>
-        <h2>Open to conversations around research and its practical application in AI systems.</h2>
-        <p>
-          This site is intentionally simple and GitHub Pages-friendly. If something here overlaps with what you
-          are building, I would be happy to connect.
-        </p>
-      </div>
-      <div class="footer-links">
-        <a href="mailto:sougato97@gmail.com">sougato97@gmail.com</a>
-        <a href="https://www.linkedin.com/in/sougato/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="https://github.com/sougato97" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://scholar.google.com/citations?user=5L6iC3MAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer">Google Scholar</a>
-        <a href="data/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      <div id="contact-content">
+        <div>
+          <p class="footer-kicker">Contact</p>
+          <h2>Loading contact information...</h2>
+        </div>
       </div>
     </footer>
   </div>

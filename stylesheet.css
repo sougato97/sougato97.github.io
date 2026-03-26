@@ -821,6 +821,11 @@ code {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: var(--bg-soft);
+  text-align: center;
+}
+
+.equation-block mjx-container {
+  margin: 0 auto !important;
 }
 
 .comments-card {

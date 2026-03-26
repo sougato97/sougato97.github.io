@@ -1,33 +1,83 @@
-# Sougato Bagchi Website
+# Personal Portfolio Starter
 
-Personal website and GitHub Pages portfolio for [sougato97.github.io](https://sougato97.github.io/).
+This repository is a static GitHub Pages starter for a personal website with a Markdown-first content model.
 
-## What This Repo Contains
+## What It Is
 
-- A static personal site built with plain `HTML` and `CSS`
-- A portfolio page covering experience, research interests, open-source work, earlier projects, and publications
-- Supporting assets such as profile images, publication visuals, and resume files
+- A single-page landing site for a personal profile
+- A blog/articles system powered by Markdown
+- A static, GitHub Pages-friendly setup with no server-side runtime
 
-## Site Structure
+## Repo Layout
 
-- `index.html`: Main single-page website
-- `stylesheet.css`: All visual styling and responsive layout rules
-- `images/`: Images used by the live site
-- `data/`: Resume and supporting PDFs
+- `index.html`: main landing page shell
+- `stylesheet.css`: shared visual styling
+- `blog/`: article pages, each with a thin `index.html` shell and a sibling `article.md`
+- `utils/blog/`: shared blog runtime for Markdown parsing, layout rendering, and comments
+- `utils/site/`: shared homepage runtime for loading section Markdown and rendering the landing page
+- `content/site/`: Markdown source files for the homepage sections
+- `example/`: reference Markdown files for future content
+- `images/`: site images
+- `data/`: PDFs and other static assets
 
-## Content Direction
+## Markdown-First Model
 
-The site is currently centered around:
+The homepage content is loaded from Markdown files under `content/site/`.
 
-- AI systems engineering
-- Multi-agent orchestration
-- GraphRAG and retrieval systems
-- LLM inference infrastructure across CUDA and ROCm
-- Earlier research work in robotics, biometrics, SLAM, and low-light image enhancement
+Suggested section files:
+
+- `content/site/hero.md`
+- `content/site/highlights.md`
+- `content/site/blog.md`
+- `content/site/current-focus.md`
+- `content/site/experience.md`
+- `content/site/open-source.md`
+- `content/site/archive.md`
+- `content/site/contact.md`
+- `content/site/about.md` for an optional future section
+
+Each section file uses simple frontmatter and plain Markdown:
+
+```md
+---
+id: about
+section: About
+order: 10
+kind: prose
+---
+
+Write the section body in Markdown.
+```
+
+Recommended frontmatter keys:
+
+- `id`: stable machine-readable identifier
+- `section`: human-readable title
+- `order`: intended display order
+- `kind`: optional hint such as `hero`, `prose`, `cards`, or `timeline`
+
+The current landing page reads the active section files in the browser through `utils/site/page.js`.
+
+## Blog Model
+
+Blog posts live under `blog/<slug>/`.
+
+Each post contains:
+
+- `blog/<slug>/index.html`: thin shell page
+- `blog/<slug>/article.md`: article source of truth
+
+The article markdown supports:
+
+- YAML frontmatter
+- headings, lists, code blocks, and normal Markdown
+- LaTeX display math through MathJax
+
+Use `example/sample_blog_article.md` as a reference format for future posts.
 
 ## Local Preview
 
-Because the site is fully static, you can preview it in any of these ways:
+Serve the repository from the root:
 
 ```bash
 python3 -m http.server 8000
@@ -35,10 +85,20 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`.
 
+## Adapting The Site
+
+If you fork this repo, the main things you usually change are:
+
+- section Markdown files in `content/site/`
+- article Markdown files in `blog/<slug>/article.md`
+- personal links in `content/site/hero.md`, `content/site/contact.md`, and the shared blog runtime
+
+The intent is that the content lives in Markdown while the HTML shell stays small and reusable.
+
 ## Deployment
 
-This repo is intended to be deployed with GitHub Pages from the repository root.
+This repo is intended for GitHub Pages deployment from the repository root.
 
-## Note
+## Template Note
 
-The original site structure was inspired by Jon Barron's academic website template, but this version has been substantially reworked for my own portfolio and project history.
+For reference, look at `https://github.com/sougato97/sougato97.github.io`.
