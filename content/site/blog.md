@@ -33,7 +33,7 @@ comments:
   repo: sougato97/sougato97.github.io
   label: blog-comment
 cards:
-  - state: In progress (Scaffold Designed)
+  - state: In progress
     title: How Do We Think, and How Do We Invent?
     description: Let's explore whether creativity can be modeled without losing what makes it human, and whether that is the next frontier for AI models.
     href: blog/how-do-we-think-and-invent/
