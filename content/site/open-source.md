@@ -35,4 +35,14 @@ cards:
       - LLM Inference
       - Query-Reranking
     note: Private / ongoing
+  - kicker: Open source
+    title: Markdown-First Portfolio
+    description: "This repo: a GitHub Pages portfolio that keeps site and blog content in Markdown, with shared rendering utilities for homepage sections and article pages."
+    tags:
+      - GitHub Pages
+      - Markdown
+      - Static Site
+    href: https://github.com/sougato97/sougato97.github.io
+    link_label: View repository
+    external: true
 ---

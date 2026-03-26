@@ -4,15 +4,47 @@ import {
   renderInlineMarkdown,
 } from "/utils/site/markdown.js";
 
-const SECTION_SOURCES = {
-  hero: new URL("../../content/site/hero.md", import.meta.url).href,
-  highlights: new URL("../../content/site/highlights.md", import.meta.url).href,
-  blog: new URL("../../content/site/blog.md", import.meta.url).href,
-  focus: new URL("../../content/site/current-focus.md", import.meta.url).href,
-  work: new URL("../../content/site/open-source.md", import.meta.url).href,
-  experience: new URL("../../content/site/experience.md", import.meta.url).href,
-  archive: new URL("../../content/site/archive.md", import.meta.url).href,
-  contact: new URL("../../content/site/contact.md", import.meta.url).href,
+const SECTION_CONFIG = {
+  hero: {
+    target: "hero-content",
+    source: new URL("../../content/site/hero.md", import.meta.url).href,
+    fallbackTitle: "Unable to load profile.",
+  },
+  highlights: {
+    target: "highlights-content",
+    source: new URL("../../content/site/highlights.md", import.meta.url).href,
+    fallbackTitle: "Unable to load highlights.",
+  },
+  blog: {
+    target: "blog-content",
+    source: new URL("../../content/site/blog.md", import.meta.url).href,
+    fallbackTitle: "Unable to load blog notes.",
+  },
+  focus: {
+    target: "focus-content",
+    source: new URL("../../content/site/current-focus.md", import.meta.url).href,
+    fallbackTitle: "Unable to load current focus.",
+  },
+  work: {
+    target: "work-content",
+    source: new URL("../../content/site/open-source.md", import.meta.url).href,
+    fallbackTitle: "Unable to load open-source work.",
+  },
+  experience: {
+    target: "experience-content",
+    source: new URL("../../content/site/experience.md", import.meta.url).href,
+    fallbackTitle: "Unable to load experience.",
+  },
+  archive: {
+    target: "archive-content",
+    source: new URL("../../content/site/archive.md", import.meta.url).href,
+    fallbackTitle: "Unable to load archive.",
+  },
+  contact: {
+    target: "contact-content",
+    source: new URL("../../content/site/contact.md", import.meta.url).href,
+    fallbackTitle: "Unable to load contact information.",
+  },
 };
 
 function asArray(value) {
@@ -277,34 +309,51 @@ function mountSection(id, html) {
   }
 }
 
-async function bootHomepage() {
-  try {
-    const [hero, highlights, blog, focus, work, experience, archive, contact] = await Promise.all(
-      Object.values(SECTION_SOURCES).map((source) => loadMarkdownDocument(source))
-    );
+function renderSectionFallback(title) {
+  return `<div class="section-heading"><h2>${escapeHtml(title)}</h2><p>Check the Markdown files under <code>content/site/</code> and the browser console.</p></div>`;
+}
 
-    updateHead(hero.metadata);
-    mountSection("hero-content", renderHero(hero.metadata));
-    mountSection("highlights-content", renderHighlights(highlights.metadata));
-    mountSection("blog-content", renderBlog(blog.metadata));
-    mountSection("focus-content", renderFocus(focus.metadata));
-    mountSection("work-content", renderWork(work.metadata));
-    mountSection("experience-content", renderExperience(experience.metadata));
-    mountSection("archive-content", renderArchive(archive.metadata));
-    mountSection("contact-content", renderContact(contact.metadata));
-  } catch (error) {
-    console.error(error);
-    const fallback = `<div class="section-heading"><h2>Unable to load site content.</h2><p>Check the Markdown files under <code>content/site/</code> and the browser console.</p></div>`;
-    [
-      "hero-content",
-      "highlights-content",
-      "blog-content",
-      "focus-content",
-      "work-content",
-      "experience-content",
-      "archive-content",
-      "contact-content",
-    ].forEach((id) => mountSection(id, fallback));
+async function bootHomepage() {
+  const renderers = {
+    hero: renderHero,
+    highlights: renderHighlights,
+    blog: renderBlog,
+    focus: renderFocus,
+    work: renderWork,
+    experience: renderExperience,
+    archive: renderArchive,
+    contact: renderContact,
+  };
+
+  const sectionEntries = Object.entries(SECTION_CONFIG);
+  const results = await Promise.allSettled(
+    sectionEntries.map(([, section]) => loadMarkdownDocument(section.source))
+  );
+
+  let heroLoaded = false;
+
+  results.forEach((result, index) => {
+    const [key, section] = sectionEntries[index];
+
+    if (result.status === "fulfilled") {
+      const document = result.value;
+      if (key === "hero") {
+        updateHead(document.metadata);
+        heroLoaded = true;
+      }
+      mountSection(section.target, renderers[key](document.metadata));
+      return;
+    }
+
+    console.error(`Failed to load section "${key}" from ${section.source}`, result.reason);
+    mountSection(section.target, renderSectionFallback(section.fallbackTitle));
+  });
+
+  if (!heroLoaded) {
+    const brand = document.getElementById("site-brand");
+    if (brand) {
+      brand.textContent = "Portfolio";
+    }
   }
 }
 

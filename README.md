@@ -2,6 +2,8 @@
 
 This repository is a static GitHub Pages starter for a personal website with a Markdown-first content model.
 
+You do not need to understand JavaScript, HTML, or CSS to use the content workflow. If you follow the Markdown formats in this repo and the notes in this README, you can update the homepage and blog content without touching the rendering code.
+
 ## What It Is
 
 - A single-page landing site for a personal profile
@@ -67,11 +69,18 @@ Each post contains:
 - `blog/<slug>/index.html`: thin shell page
 - `blog/<slug>/article.md`: article source of truth
 
+For a new post, copy the thin shell from:
+
+- `https://github.com/sougato97/sougato97.github.io/blob/master/blog/how-do-we-think-and-invent/index.html`
+
+into `blog/<slug>/index.html`, then add the post content in `blog/<slug>/article.md`.
+
 The article markdown supports:
 
 - YAML frontmatter
 - headings, lists, code blocks, and normal Markdown
 - LaTeX display math through MathJax
+- GitHub-based user comments on blog articles through Utterances
 
 Use `example/sample_blog_article.md` as a reference format for future posts.
 
