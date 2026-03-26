@@ -8,50 +8,131 @@ kicker: Essay
 math: true
 ---
 
-I do not mean this in a mystical way. I mean it as an engineering question. People do not invent in a vacuum. We observe, compress, compare, borrow, reject, combine, and then test. Some inventions are flashes of insight, but even those flashes usually arrive after a long period of structured exposure.
 
-So the question is not whether thinking is magical. The question is whether there is enough structure inside thought that we can model parts of it without flattening what makes it human.
+## Abstract
 
-## A rough way to frame invention
+Have you folks thought about how theoretical physicists made bold claims
+throughout history without having proper references? And later, they showed
+that those seemingly wild ideas held up through experimentation. I will explain
+what I mean using a few examples.
 
-A useful starting point is to treat invention as a function of memory, abstraction, analogy, constraint, and taste. I am not claiming this is *the* equation. I am saying it is a good way to reason about the problem.
+Take Albert Einstein, for example, who came up with the idea of time dilation
+in the Special Theory of Relativity [1]. How did he ever arrive at that? Isn't
+it fascinating to think about how the theory first struck his mind? Or how
+Archimedes came up with buoyancy [2]? He might have been daydreaming about
+possible solutions, but believe me or not, arriving at such an idea without
+prior information is really fascinating.
+
+Quantifying the abstract idea of thought and the process of thinking would help
+us design the next frontier of AI architecture.
+
+
+## A rudimentary way to frame invention
+
+A useful starting point is to treat invention as a function of memory,
+abstraction, analogy, constraint, and taste. I am not claiming this is *the*
+equation. I am saying it is a good way to reason about the problem.
 
 $$
 \text{invention} \approx f(\text{memory},\; \text{abstraction},\; \text{analogy},\; \text{constraint},\; \text{taste})
 $$
 
-Memory matters because nothing new is created from nothing. Abstraction matters because raw facts are not enough; we need compressed forms that transfer across domains. Analogy matters because many useful inventions are really clean mappings between two things that previously looked unrelated. Constraint matters because useful solutions are shaped by budgets, hardware, time, and the messiness of the real world. Taste matters because not every valid combination is interesting.
+Memory matters because nothing new is created from nothing. Abstraction matters
+because raw facts are not enough; we need compressed forms that transfer across
+domains. Analogy matters because many useful inventions are really clean
+mappings between two things that previously looked unrelated. Constraint matters
+because useful solutions are shaped by budgets, hardware, time, and the
+messiness of the real world. Taste matters because not every valid combination
+is interesting.
 
-## What current models are already good at
 
-Present-generation models are already strong at recall, recombination, and compression. They can pull patterns out of large corpora, summarize them, and produce plausible continuations. That alone is why they are useful. In practice, a lot of good engineering work is exactly that: turning broad prior knowledge into something sharp enough for a local problem.
+## Invention: Using an example
 
-In other words, models already do part of the job. They are not blank autocomplete systems anymore. They are pattern compressors with a useful amount of transfer.
+Let's take an example. In the 20th century, researchers found that stem cells
+can differentiate into different cell types [3]. That does not automatically
+mean immortality, but it does suggest how powerful a new research direction can
+be once we understand how to repair or replace the right cells.
 
-## Where they still feel limited
+Now let's frame an equation with the information we have.
+$$
+y = \left\{
+    (m_{1_a} \; + \; m_{1_b} \; + \; \ldots)x_1^{n_1} \; + \;\ldots 
+    \; + \;
+    (W_{1_a} \; + \; W_{1_b} \; + \; \ldots)C_1^{z_1}
+    \right\}
+    \left\{
+    O_1^{l_1} \; + \; O_1^{l_1} \; + \; \ldots
+    \right\}
+$$
 
-The gap shows up when novelty has to stay coherent over time. A system can generate many reasonable ideas, but invention usually requires more than local plausibility. It needs persistent pressure across steps: remembering what has already been tried, rejecting weak branches, preserving good constraints, and pushing toward something both new and useful.
+Now the equation might look scary for some people, but believe me, it's not. I
+actually modified our high-school equation $y = mx + c$.
 
-That is where the question becomes interesting. Maybe the frontier is not just larger pretraining. It may also involve better memory structures, stronger world models, cleaner decomposition of subproblems, and architectures that can revisit their own intermediate reasoning without collapsing into noise.
+Now let's explore the *not-so-pretty* equation. Here:
+$$
 
-## A toy objective
+\begin{aligned}
 
-If I were forced to write down a crude target for invention, it would look something like this:
+&y = \text{new idea, which here can be stem cell research} \\
+&m_1 = \text{each aspect of importance for a particular known piece of information} \\
+&x_1 = \text{known information to us. Example: human anatomy} \\
+&W_1 = \text{boundary condition for the constraints} \\
+&C_1 = \text{Constraint. Example: we can't kill humans} \\
+&O_1 = \text{Objective. Example: eliminate hunger} \\
+&O_2 = \text{Objective. Example: organ transplant} \\
+% &\left[(m_{1_a} \; + \; m_{1_b} \; + \; \ldots)x_1^{n_1} \; + \; \ldots \right]
+% = \text{all the important previously known information}
+
+\end{aligned}
 
 $$
-I(x) = \text{novelty}(x) \cdot \text{usefulness}(x) \cdot \text{coherence}(x)
-$$
 
-This is obviously incomplete, but it helps. High novelty without usefulness is noise. Usefulness without novelty is routine optimization. Novelty and usefulness without coherence usually break during execution. If a future model class gets better at balancing all three, we may start calling it inventive for reasons that are harder to dismiss.
+That basically means that our idea of pursuing *stem cell research* to solve a
+few problems, like organ failure and cancer, came from prior needs, along with
+a few boundary conditions, such as not killing humans or animals.
 
-## Why I care about this
 
-I care because this question is not only philosophical. It changes how we build systems today. If invention depends on memory, structure, and constraints, then retrieval, decomposition, and data design are not side issues. They are part of the path toward more capable systems.
+## What current AI models are already good at
 
-That is also why I keep thinking about knowledge graphs, retrieval layers, and modular inference systems. If we want models to become better at creating genuinely useful ideas, we probably need to help them hold cleaner state, interact with better memory, and reason across better-structured worlds.
+Present-generation models are already strong at recall, recombination, and
+compression. They can pull patterns out of large corpora, summarize them, and
+produce plausible continuations. These models, which are most likely based on
+*Transformers*, are, in simple language, word predictors.
+
+Present-generation AI really feels intelligent and might give you the strong
+illusion that it can think. As of now, if I give any AI model the task of
+generating the next big idea in physics or organic chemistry, I do not think it
+will be able to do that.
+
+That's where we have to understand the difference between present-gen AI and
+us.
+
+
+## Idea-As-A-Token
+
+This is a term I coined, but I will explain it here. Taking my previous
+examples as reference, the quanta of information in our brain seem closer to
+ideas than to raw words. That feels like a higher-order representation compared
+to present-generation tokens, or combinations of alphabets.
+
+Now we combine and juggle ideas to create something new, while present-gen AI
+models combine and juggle tokens to form the most meaningful sentence or
+paragraph. So we are operating in an altogether different league, or at least a
+different representational space.
+
+We might blame everything on the present-gen silicon-based compute units, but I
+believe it's also an algorithmic limitation.
+
 
 ## Where I would push next
 
-I would look at systems that separate memory from inference more clearly, keep richer intermediate state, and let models operate over structured representations instead of only dense text. I would also look at whether invention needs explicit search over idea space rather than one-pass generation.
+The backbone of our AI is backpropagation, and I love it. But I also think it's
+not giving us the complete picture of how humans think. I will keep researching
+this topic and see if something comes up. I will also update my progress here.
 
-If that sounds like a mix of model design, retrieval systems, and systems engineering, that is because it probably is.
+
+## References:
+
+1. Albert Einstein, [*On the Electrodynamics of Moving Bodies*](https://www.fourmilab.ch/etexts/einstein/specrel/specrel.pdf).
+2. Encyclopaedia Britannica, [*Archimedes' principle*](https://www.britannica.com/science/Archimedes-principle).
+3. Irving L. Weissman and Judith A. Shizuru, [*The origins of the identification and isolation of hematopoietic stem cells, and their capability to induce donor-specific transplantation tolerance and treat autoimmune diseases*](https://pmc.ncbi.nlm.nih.gov/articles/PMC2574516/).

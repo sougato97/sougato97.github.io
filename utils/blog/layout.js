@@ -98,6 +98,12 @@ function normalizeTags(tags) {
     .filter(Boolean);
 }
 
+function renderTagChips(tags) {
+  return normalizeTags(tags)
+    .map((tag) => `<span class="article-tag">${escapeHtml(tag)}</span>`)
+    .join("");
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -112,12 +118,10 @@ export function renderBlogPage({ metadata, html, site, blog, contact, siteRoot }
   const kicker = escapeHtml(metadata.kicker || "Article");
   const description = escapeHtml(metadata.description || "");
   const date = escapeHtml(metadata.displayDate || "");
-  const tags = normalizeTags(metadata.tags);
-  const tagsMarkup = tags.length ? escapeHtml(tags.join(", ")) : "";
-  const mathMarkup = metadata.math ? '<span id="article-math">Supports LaTeX equations</span>' : '<span id="article-math" hidden>Supports LaTeX equations</span>';
-  const tagsNode = tags.length
-    ? `<span id="article-tags">${tagsMarkup}</span>`
-    : '<span id="article-tags" hidden></span>';
+  const tagsMarkup = renderTagChips(metadata.tags);
+  const tagsNode = tagsMarkup
+    ? `<div class="article-tags" id="article-tags">${tagsMarkup}</div>`
+    : '<div class="article-tags" id="article-tags" hidden></div>';
   const brand = escapeHtml(site.brand || "Portfolio");
   const navLinks = Array.isArray(blog.article_nav) ? blog.article_nav : [];
   const navMarkup = navLinks
@@ -163,7 +167,6 @@ export function renderBlogPage({ metadata, html, site, blog, contact, siteRoot }
           <div class="article-meta" aria-label="Article metadata">
             <span id="article-date">${date}</span>
             ${tagsNode}
-            ${mathMarkup}
           </div>
         </section>
       </header>
