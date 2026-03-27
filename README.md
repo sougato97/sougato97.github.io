@@ -16,10 +16,14 @@ Executing any of the `python` files is not necessary; but complementary for auto
 
 ## How To Make Your Version
 
-If you fork this repo, you are making your own copy of the site. The GitHub Pages URL and the homepage base path need to match the type of site you are publishing.
+If you fork this repo, you are making your own copy of the site. Many people will use it as a user site by forking into `https://github.com/username/username.github.io`. Others may use it as a project site like `https://github.com/username/repo`.
 
-- For a user site, keep the repository name as `username.github.io`
-- For a project site, the URL usually looks like `username.github.io/repo`
+- User site example:
+  - repository: `username/username.github.io`
+  - site URL: `https://username.github.io`
+- Project site example:
+  - repository: `username/repo`
+  - site URL: `https://username.github.io/repo`
 - The homepage base path in `content/site/config.md` must match that setup so homepage and blog links resolve correctly
 - If the base path is wrong, navigation links will point to the wrong place even if the content files are correct
 
@@ -31,10 +35,12 @@ The browser runtime assumes a homepage root path and uses it to build links back
 
 If you fork the repo:
 
-- Preferred method: keep the same user-site structure if you want `username.github.io`
-  Example: repository name `sougato97.github.io` -> site URL `https://sougato97.github.io`
-- keep the project-site structure if you want `username.github.io/repo`
-  Example: repository name `portfolio` under user `sougato97` -> site URL `https://sougato97.github.io/portfolio`
+- user site:
+  - keep the repository name as `username.github.io`
+  - example: repository `sougato97/sougato97.github.io` -> site URL `https://sougato97.github.io`
+- project site:
+  - keep the repository name as `repo`
+  - example: repository `sougato97/portfolio` -> site URL `https://sougato97.github.io/portfolio`
 - make sure `site.homepage_root` matches that URL shape
 
 Examples:
@@ -217,6 +223,52 @@ If deployment does not work, check these first:
 2. the workflow is running on the branch you are pushing to
 3. `.nojekyll` is present so raw Markdown files are served correctly
 4. `content/site/config.md` has the correct `site.homepage_root` for your site type
+
+## Contributing
+
+If you want to contribute improvements back to this repo, use the normal fork-and-PR flow.
+
+1. Fork the repository on GitHub.
+2. Clone your fork locally:
+
+If your fork is your GitHub Pages user site, the fork may live under your own username, for example:
+
+- `origin`: `https://github.com/your-username/your-username.github.io.git`
+- `upstream`: `https://github.com/sougato97/sougato97.github.io.git`
+
+```bash
+git clone https://github.com/<your-username>/<your-username>.github.io.git
+cd <your-username>.github.io
+```
+
+3. Add the original repository as `upstream`:
+
+```bash
+git remote add upstream https://github.com/sougato97/sougato97.github.io.git
+```
+
+4. Create a branch for your changes:
+
+```bash
+git checkout -b your-change-name
+```
+
+5. Make your edits, commit them, and push to your fork:
+
+```bash
+git push -u origin your-change-name
+```
+
+6. Open a Pull Request from your fork branch to the main repository.
+
+Useful sync commands:
+
+```bash
+git fetch upstream
+git merge upstream/master
+```
+
+If the default branch is `main` instead of `master`, replace `upstream/master` with `upstream/main`.
 
 ## Template Note
 

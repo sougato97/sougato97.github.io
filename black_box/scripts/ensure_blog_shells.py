@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 BLOG_DIR = ROOT / "blog"
 TEMPLATE_PATH = ROOT / "black_box" / "templates" / "blog-index.html"
 
