@@ -2,50 +2,9 @@ import {
   escapeHtml,
   loadMarkdownDocument,
   renderInlineMarkdown,
-} from "/utils/site/markdown.js";
+} from "/black_box/utils/site/markdown.js";
 
-const SECTION_CONFIG = {
-  hero: {
-    target: "hero-content",
-    source: new URL("../../content/site/hero.md", import.meta.url).href,
-    fallbackTitle: "Unable to load profile.",
-  },
-  highlights: {
-    target: "highlights-content",
-    source: new URL("../../content/site/highlights.md", import.meta.url).href,
-    fallbackTitle: "Unable to load highlights.",
-  },
-  blog: {
-    target: "blog-content",
-    source: new URL("../../content/site/blog.md", import.meta.url).href,
-    fallbackTitle: "Unable to load blog notes.",
-  },
-  focus: {
-    target: "focus-content",
-    source: new URL("../../content/site/current-focus.md", import.meta.url).href,
-    fallbackTitle: "Unable to load current focus.",
-  },
-  work: {
-    target: "work-content",
-    source: new URL("../../content/site/open-source.md", import.meta.url).href,
-    fallbackTitle: "Unable to load open-source work.",
-  },
-  experience: {
-    target: "experience-content",
-    source: new URL("../../content/site/experience.md", import.meta.url).href,
-    fallbackTitle: "Unable to load experience.",
-  },
-  archive: {
-    target: "archive-content",
-    source: new URL("../../content/site/archive.md", import.meta.url).href,
-    fallbackTitle: "Unable to load archive.",
-  },
-  contact: {
-    target: "contact-content",
-    source: new URL("../../content/site/contact.md", import.meta.url).href,
-    fallbackTitle: "Unable to load contact information.",
-  },
-};
+const CONFIG_SOURCE = new URL("../../../content/site/config.md", import.meta.url).href;
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -53,6 +12,29 @@ function asArray(value) {
 
 function assetUrl(relativePath) {
   return new URL(relativePath, import.meta.url).href;
+}
+
+function resolveHomeRoot(homepageRoot = "/") {
+  return new URL(homepageRoot, import.meta.url).href;
+}
+
+function resolveNavHref(item = {}, homepageRoot = "/") {
+  const targetType = item.target_type || "url";
+  const targetValue = item.target_value || "";
+
+  if (targetType === "page-anchor") {
+    return `#${targetValue}`;
+  }
+
+  if (targetType === "home-section") {
+    return `${resolveHomeRoot(homepageRoot)}#${targetValue}`;
+  }
+
+  if (targetType === "url") {
+    return targetValue || item.href || "#";
+  }
+
+  return item.href || "#";
 }
 
 function updateHead(hero) {
@@ -79,6 +61,12 @@ function updateHead(hero) {
   }
 }
 
+function renderNav(items, homepageRoot) {
+  return asArray(items)
+    .map((item) => `<a href="${escapeHtml(resolveNavHref(item, homepageRoot))}">${escapeHtml(item.label || "Link")}</a>`)
+    .join("");
+}
+
 function renderHero(metadata) {
   const facts = asArray(metadata.facts)
     .map(
@@ -99,7 +87,7 @@ function renderHero(metadata) {
       const href = escapeHtml(action.href || "#");
       const label = escapeHtml(action.label || "Link");
       const icon = escapeHtml(action.icon || "resume");
-      return `<a class="${classes}" href="${href}"${target} aria-label="${label}" title="${label}"><img src="${assetUrl(`../../icons/${icon}.svg`)}" alt=""></a>`;
+      return `<a class="${classes}" href="${href}"${target} aria-label="${label}" title="${label}"><img src="${assetUrl(`../../../icons/${icon}.svg`)}" alt=""></a>`;
     })
     .join("");
 
@@ -314,46 +302,72 @@ function renderSectionFallback(title) {
 }
 
 async function bootHomepage() {
-  const renderers = {
-    hero: renderHero,
-    highlights: renderHighlights,
-    blog: renderBlog,
-    focus: renderFocus,
-    work: renderWork,
-    experience: renderExperience,
-    archive: renderArchive,
-    contact: renderContact,
-  };
+  try {
+    const renderers = {
+      hero: renderHero,
+      highlights: renderHighlights,
+      blog: renderBlog,
+      focus: renderFocus,
+      work: renderWork,
+      experience: renderExperience,
+      archive: renderArchive,
+      contact: renderContact,
+    };
 
-  const sectionEntries = Object.entries(SECTION_CONFIG);
-  const results = await Promise.allSettled(
-    sectionEntries.map(([, section]) => loadMarkdownDocument(section.source))
-  );
+    const configDoc = await loadMarkdownDocument(CONFIG_SOURCE);
+    const siteConfig = configDoc.metadata || {};
+    const sections = asArray(siteConfig.sections).sort((left, right) => (left.order || 0) - (right.order || 0));
+    const homepageRoot = siteConfig.site?.homepage_root || "/";
 
-  let heroLoaded = false;
+    const navLinks = document.getElementById("site-nav-links");
+    if (navLinks) {
+      navLinks.innerHTML = renderNav(siteConfig.nav?.homepage, homepageRoot);
+    }
 
-  results.forEach((result, index) => {
-    const [key, section] = sectionEntries[index];
+    const results = await Promise.allSettled(
+      sections.map((section) => loadMarkdownDocument(new URL(`../../../content/site/${section.file}`, import.meta.url).href))
+    );
 
-    if (result.status === "fulfilled") {
-      const document = result.value;
-      if (key === "hero") {
-        updateHead(document.metadata);
-        heroLoaded = true;
+    let heroLoaded = false;
+
+    results.forEach((result, index) => {
+      const section = sections[index];
+      const key = section.id;
+
+      if (result.status === "fulfilled") {
+        const document = result.value;
+        const metadata = { ...section, ...document.metadata };
+        if (key === "hero") {
+          updateHead(metadata);
+          heroLoaded = true;
+        }
+        mountSection(section.target, renderers[key](metadata));
+        return;
       }
-      mountSection(section.target, renderers[key](document.metadata));
-      return;
-    }
 
-    console.error(`Failed to load section "${key}" from ${section.source}`, result.reason);
-    mountSection(section.target, renderSectionFallback(section.fallbackTitle));
-  });
+      console.error(`Failed to load section "${key}" from ${section.file}`, result.reason);
+      mountSection(section.target, renderSectionFallback(section.fallbackTitle));
+    });
 
-  if (!heroLoaded) {
-    const brand = document.getElementById("site-brand");
-    if (brand) {
-      brand.textContent = "Portfolio";
+    if (!heroLoaded) {
+      const brand = document.getElementById("site-brand");
+      if (brand) {
+        brand.textContent = "Portfolio";
+      }
     }
+  } catch (error) {
+    console.error("Failed to load site config or homepage content", error);
+    const fallback = renderSectionFallback("Unable to load site content.");
+    [
+      "hero-content",
+      "highlights-content",
+      "blog-content",
+      "focus-content",
+      "work-content",
+      "experience-content",
+      "archive-content",
+      "contact-content",
+    ].forEach((id) => mountSection(id, fallback));
   }
 }
 

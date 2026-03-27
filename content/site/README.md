@@ -4,12 +4,15 @@ This folder is the Markdown source of truth for the main site sections.
 
 ## How It Works
 
+- `config.md` is the shared source for section order, section labels, nav labels, and the homepage root path.
 - Each major homepage section lives in its own Markdown file.
 - `index.html` stays as the shared shell.
-- `utils/site/page.js` reads these files, parses the frontmatter, and renders the homepage in the browser.
+- `/black_box/utils/site/page.js` reads these files, parses the frontmatter, and renders the homepage in the browser.
+- The text below the frontmatter in each section file is there for editors. The runtime reads the YAML metadata above and ignores the guidance below.
 
 ## Suggested Files
 
+- `config.md`: shared section metadata, nav config, and homepage root path
 - `hero.md`: opening headline, lede, and quick facts
 - `hero.md`: also a good place for shared page metadata such as author, title, and description
 - `highlights.md`: metric strip values
@@ -28,18 +31,20 @@ Use simple YAML frontmatter like this:
 ```md
 ---
 id: about
-section: About
-order: 10
-kind: prose
 ---
 ```
 
-Recommended keys:
+Recommended keys for section files:
 
 - `id`: stable section identifier
+
+Shared keys now live in `config.md`:
+
 - `section`: human-readable section title
-- `order`: display order for a future renderer
-- `kind`: optional content type such as `hero`, `prose`, `cards`, or `timeline`
+- `order`: display order
+- `kind`: content type such as `hero`, `prose`, `cards`, or `timeline`
+- `kicker`: shared section kicker text
+- `site.homepage_root`: homepage base path for child-page navigation
 
 Homepage metadata keys commonly used in `hero.md`:
 

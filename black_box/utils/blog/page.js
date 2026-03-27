@@ -1,16 +1,13 @@
-import { formatDisplayDate, renderArticleMarkdown } from "/utils/blog/markdown.js";
-import { renderBlogPage, syncSharedHead } from "/utils/blog/layout.js";
-import { loadMarkdownDocument } from "/utils/site/markdown.js";
+import { formatDisplayDate, renderArticleMarkdown } from "/black_box/utils/blog/markdown.js";
+import { renderBlogPage, syncSharedHead } from "/black_box/utils/blog/layout.js";
+import { loadMarkdownDocument } from "/black_box/utils/site/markdown.js";
 
 const SITE_SOURCES = {
-  hero: new URL("../../content/site/hero.md", import.meta.url).href,
-  blog: new URL("../../content/site/blog.md", import.meta.url).href,
-  contact: new URL("../../content/site/contact.md", import.meta.url).href,
+  config: new URL("../../../content/site/config.md", import.meta.url).href,
+  hero: new URL("../../../content/site/hero.md", import.meta.url).href,
+  blog: new URL("../../../content/site/blog.md", import.meta.url).href,
+  contact: new URL("../../../content/site/contact.md", import.meta.url).href,
 };
-
-function getSiteRoot() {
-  return new URL("../../", import.meta.url);
-}
 
 function getBodyConfig() {
   return {
@@ -69,19 +66,23 @@ function containsMathSyntax(sourceText = "") {
   );
 }
 
-function renderComments(repo, label) {
+function renderComments(comments = {}) {
   const host = document.getElementById("comments-host");
-  if (!host || !repo || !label) {
+  if (!host) {
     return;
   }
 
   host.innerHTML = "";
+  if (comments.provider !== "utterances" || !comments.repo || !comments.label) {
+    return;
+  }
+
   const script = document.createElement("script");
   script.src = "https://utteranc.es/client.js";
   script.async = true;
-  script.setAttribute("repo", repo);
+  script.setAttribute("repo", comments.repo);
   script.setAttribute("issue-term", "pathname");
-  script.setAttribute("label", label);
+  script.setAttribute("label", comments.label);
   script.setAttribute(
     "theme",
     document.documentElement.getAttribute("data-theme") === "dark" ? "github-dark" : "github-light"
@@ -101,7 +102,7 @@ function applyToggleState(toggle) {
   }
 }
 
-function setupThemeToggle(commentsRepo, commentsLabel) {
+function setupThemeToggle(commentsConfig) {
   const toggle = document.querySelector(".theme-toggle");
   if (!toggle) {
     return;
@@ -115,7 +116,7 @@ function setupThemeToggle(commentsRepo, commentsLabel) {
     root.setAttribute("data-theme", nextTheme);
     localStorage.setItem("theme", nextTheme);
     applyToggleState(toggle);
-    renderComments(commentsRepo, commentsLabel);
+    renderComments(commentsConfig);
   });
 }
 
@@ -123,8 +124,9 @@ async function bootArticlePage() {
   const { source } = getBodyConfig();
 
   try {
-    const [response, heroDoc, blogDoc, contactDoc] = await Promise.all([
+    const [response, configDoc, heroDoc, blogDoc, contactDoc] = await Promise.all([
       fetch(source, { cache: "no-store" }),
+      loadMarkdownDocument(SITE_SOURCES.config),
       loadMarkdownDocument(SITE_SOURCES.hero),
       loadMarkdownDocument(SITE_SOURCES.blog),
       loadMarkdownDocument(SITE_SOURCES.contact),
@@ -137,26 +139,30 @@ async function bootArticlePage() {
     const { metadata, html } = renderArticleMarkdown(sourceText);
     metadata.math = Boolean(metadata.math) || containsMathSyntax(sourceText);
     metadata.displayDate = formatDisplayDate(metadata.date);
+    const config = configDoc.metadata || {};
     const hero = heroDoc.metadata || {};
     const blog = blogDoc.metadata || {};
-    const contact = contactDoc.metadata || {};
+    const contactSection = Array.isArray(config.sections)
+      ? config.sections.find((section) => section.id === "contact") || {}
+      : {};
+    const contact = { ...contactSection, ...(contactDoc.metadata || {}) };
     const site = {
       brand: hero.name || "Portfolio",
       author: hero.meta_author || hero.name || "Portfolio",
       titleSuffix: hero.name || "Portfolio",
       description: hero.meta_description || "",
+      homepageRoot: config.site?.homepage_root || "/",
     };
-    const commentsRepo = blog.comments?.repo || "";
-    const commentsLabel = blog.comments?.label || "";
-    const siteRoot = getSiteRoot();
+    const navItems = config.nav?.article || [];
+    const commentsConfig = blog.comments || {};
 
     const root = document.getElementById("blog-root");
     if (root) {
-      root.innerHTML = renderBlogPage({ metadata, html, site, blog, contact, siteRoot });
+      root.innerHTML = renderBlogPage({ metadata, html, site, blog, contact, navItems });
     }
 
     syncSharedHead({ site, title: metadata.title || "Untitled Article", description: metadata.description || "" });
-    setupThemeToggle(commentsRepo, commentsLabel);
+    setupThemeToggle(commentsConfig);
 
     if (metadata.math) {
       await loadMathJax();
@@ -165,7 +171,7 @@ async function bootArticlePage() {
       }
     }
 
-    renderComments(commentsRepo, commentsLabel);
+    renderComments(commentsConfig);
   } catch (error) {
     console.error(error);
     const root = document.getElementById("blog-root");

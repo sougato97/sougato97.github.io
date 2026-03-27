@@ -1,8 +1,5 @@
 ---
 id: highlights
-section: Highlights
-order: 5
-kind: metrics
 metrics:
   - value: 75%+
     label: Latency reduction in agent orchestration at fundae.ai
@@ -13,3 +10,13 @@ metrics:
   - value: CUDA + ROCm
     label: Open-source inference stacks deployed and evaluated side by side
 ---
+
+## What this file controls
+
+This file defines the metric strip shown below the hero section.
+Each item in `metrics` becomes one highlight card.
+
+Useful fields in the YAML above:
+
+- `metrics[].value`: the large highlighted number or phrase
+- `metrics[].label`: supporting explanation shown below the value

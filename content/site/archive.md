@@ -1,9 +1,5 @@
 ---
 id: archive
-section: Research & Earlier Work
-order: 50
-kind: cards
-kicker: Research & Earlier Work
 title: Older research, projects, and publications kept in one chronological archive.
 intro: >
   Some of these started as project work, some became publications, and a few
@@ -73,3 +69,19 @@ items:
         href: https://sougato97.github.io/hcc/hcc_files/hcc.pdf
         external: true
 ---
+
+## What this file controls
+
+This file defines the archive section for older research, publications, and earlier projects.
+Each entry in `items` becomes an archive card on the homepage.
+
+Useful fields in the YAML above:
+
+- `title`: section heading
+- `intro`: short intro paragraph above the cards
+- `items[].year`: year or year range shown on the card
+- `items[].title`: card title
+- `items[].description`: card summary
+- `items[].image`: optional image path
+- `items[].alt`: alt text for the image
+- `items[].links`: optional list of links such as paper, code, or thesis

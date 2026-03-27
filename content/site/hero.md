@@ -1,8 +1,5 @@
 ---
 id: hero
-section: Hero
-order: 0
-kind: hero
 name: Sougato Bagchi
 meta_author: Sougato Bagchi
 page_title: Sougato Bagchi | AI Systems Engineer
@@ -71,3 +68,20 @@ panel:
     - CUDA + ROCm
     - GraphRAG
 ---
+
+## What this file controls
+
+This file defines the homepage hero area and the site-level metadata.
+It controls the main headline, lede, action buttons, quick facts, portrait, and the right-side current-work panel.
+
+Useful fields in the YAML above:
+
+- `name`: brand name shown in the site navigation
+- `meta_author`: `<meta name="author">`
+- `page_title`: browser tab title
+- `meta_description`: `<meta name="description">`
+- `eyebrow`, `title`, `lede`, `detail`: hero copy
+- `actions[]`: top action buttons
+- `facts[]`: quick facts shown under the hero copy
+- `portrait`: profile image source and alt text
+- `panel`: right-side panel title, body, and tags

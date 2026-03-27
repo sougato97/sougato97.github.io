@@ -11,8 +11,8 @@ math: true
 
 ## Abstract
 
-Have you folks thought about how theoretical physicists made bold claims
-throughout history without having proper references? And later, they showed
+Have you ever thought about how theoretical physicists made bold claims throughout 
+history without having proper references? And later, they showed
 that those seemingly wild ideas held up through experimentation. I will explain
 what I mean using a few examples.
 

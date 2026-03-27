@@ -1,9 +1,5 @@
 ---
 id: experience
-section: Education & Experience
-order: 40
-kind: timeline
-kicker: Education & Experience
 title: A timeline of the systems, teams, and research tracks that shaped my work.
 intro: >
   Recent work is front-loaded here, while older projects and publications are
@@ -64,3 +60,19 @@ items:
     role: B.Tech. in Computer Science and Engineering
     description: Early focus on machine learning, image processing, and applied research, including published work in survival prediction and weather-related modeling.
 ---
+
+## What this file controls
+
+This file defines the education and experience timeline.
+Each entry in `items` becomes one timeline card.
+
+Useful fields in the YAML above:
+
+- `title`: section heading
+- `intro`: short paragraph above the timeline
+- `items[].side`: left or right placement on the timeline
+- `items[].kind`: styling hint such as `work` or `education`
+- `items[].date`: time range shown for the entry
+- `items[].title`: organization or institution name
+- `items[].role`: role or degree label
+- `items[].description`: summary of the work or study

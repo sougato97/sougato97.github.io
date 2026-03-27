@@ -1,9 +1,5 @@
 ---
 id: work
-section: Selected Systems & Open Source
-order: 30
-kind: cards
-kicker: Selected Systems & Open Source
 title: Projects that reflect how I think about infrastructure, agents, and retrieval.
 cards:
   - kicker: Open source
@@ -36,8 +32,8 @@ cards:
       - Query-Reranking
     note: Private / ongoing
   - kicker: Open source
-    title: Markdown-First Portfolio
-    description: "This repo: a GitHub Pages portfolio that keeps site and blog content in Markdown, with shared rendering utilities for homepage sections and article pages."
+    title: Portfolio-in-Markdown
+    description: "A GitHub Pages portfolio template where the homepage and blog are managed through Markdown, so updating content stays simple without having to work directly in HTML, CSS, or JavaScript."
     tags:
       - GitHub Pages
       - Markdown
@@ -46,3 +42,19 @@ cards:
     link_label: View repository
     external: true
 ---
+
+## What this file controls
+
+This file defines the Selected Systems & Open Source section.
+Each entry in `cards` becomes one project card.
+
+Useful fields in the YAML above:
+
+- `title`: section heading
+- `cards[].kicker`: small label above the project title
+- `cards[].title`: project name
+- `cards[].description`: summary of the project
+- `cards[].tags`: list of technology tags
+- `cards[].href`: repository or project link
+- `cards[].link_label`: text for the footer link
+- `cards[].note`: non-link footer note for private or in-progress work

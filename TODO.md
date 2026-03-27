@@ -1,0 +1,6 @@
+- Draft a validator that checks all YAML frontmatter/config fragments under `content/site/` against the structure used in the reference repo: `https://github.com/sougato97/sougato97.github.io/tree/master`.
+- The validator should also scan the code in `black_box/utils/` so content/config keys are checked against what the runtime actually reads.
+- Run the scan against the same deployed version of the site, not against mismatched local/deployed revisions, so the content schema and runtime code stay aligned.
+- The validator should list all schema/content differences clearly and point to the exact files and keys that changed.
+- It should also support reverting those content/config changes back to the reference-aligned version when needed.
+- Goal: reduce the chance that a non-technical editor breaks the site by changing Markdown/YAML without realizing it.

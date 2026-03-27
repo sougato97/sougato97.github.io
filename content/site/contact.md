@@ -1,9 +1,5 @@
 ---
 id: contact
-section: Contact
-order: 60
-kind: prose
-kicker: Contact
 title: Open to conversations around research and its practical application in AI systems.
 body: >
   This site is intentionally simple and GitHub Pages-friendly. If something
@@ -25,3 +21,17 @@ links:
     href: data/resume.pdf
     external: true
 ---
+
+## What this file controls
+
+This file defines the footer contact block.
+It controls the closing headline, short note, and the list of contact links.
+
+Useful fields in the YAML above:
+
+- `title`: footer heading
+- `body`: short closing paragraph
+- `links[]`: contact links rendered in the footer
+- `links[].label`: visible link text
+- `links[].href`: destination URL, mailto link, or file path
+- `links[].external`: whether the link should open as an external destination

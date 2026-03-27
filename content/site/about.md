@@ -1,10 +1,14 @@
 ---
 id: about
-section: About
-order: 15
-kind: prose
 ---
 
-I build AI systems around retrieval, inference, and knowledge-rich workflows.
+## What this file controls
 
-Most of my recent work has been in healthcare-facing and research-driven environments where model capability has to survive production constraints.
+This file is reserved for an optional background or "about" section on the homepage.
+The current site runtime does not render it, so you can treat this file as a draft area for future profile copy.
+
+Useful fields in the YAML above:
+
+- `id`: stable section identifier
+
+Use this file when you want to add a dedicated about section later.

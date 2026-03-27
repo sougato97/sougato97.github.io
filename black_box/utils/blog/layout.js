@@ -12,14 +12,42 @@ function buildFaviconDataUri(name = "") {
   return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141f2d'/%3E%3Ctext x='50' y='62' font-size='48' text-anchor='middle' fill='%23f7f3ea' font-family='Arial, sans-serif'%3E${encodeURIComponent(initials)}%3C/text%3E%3C/svg%3E`;
 }
 
-function resolveHref(href = "", siteRoot = "/") {
-  if (!href) {
-    return "#";
+function normalizeHomepageRoot(homepageRoot = "/") {
+  const value = String(homepageRoot || "/").trim() || "/";
+  if (/^[a-z]+:/i.test(value)) {
+    return value.endsWith("/") ? value : `${value}/`;
   }
-  if (/^[a-z]+:/i.test(href) || href.startsWith("/")) {
+  const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
+function resolveHref(href = "", homepageRoot = "/") {
+  if (!href) return "#";
+  if (/^[a-z]+:/i.test(href) || href.startsWith("/") || href.startsWith("#")) {
     return href;
   }
-  return new URL(href, siteRoot).href;
+
+  const base = normalizeHomepageRoot(homepageRoot);
+  const absoluteBase = /^[a-z]+:/i.test(base)
+    ? base
+    : new URL(base, window.location.origin).href;
+
+  return new URL(href, absoluteBase).href;
+}
+
+function resolveTarget(item = {}, homepageRoot = "/") {
+  const targetType = item.target_type || "url";
+  const targetValue = item.target_value || "";
+
+  if (targetType === "page-anchor") {
+    return `#${targetValue}`;
+  }
+
+  if (targetType === "home-section") {
+    return `${normalizeHomepageRoot(homepageRoot)}#${targetValue}`;
+  }
+
+  return resolveHref(targetValue || item.href || "#", homepageRoot);
 }
 
 export function syncSharedHead({ site, title, description }) {
@@ -113,7 +141,7 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-export function renderBlogPage({ metadata, html, site, blog, contact, siteRoot }) {
+export function renderBlogPage({ metadata, html, site, blog, contact, navItems }) {
   const title = escapeHtml(metadata.title || "Untitled Article");
   const kicker = escapeHtml(metadata.kicker || "Article");
   const description = escapeHtml(metadata.description || "");
@@ -123,18 +151,17 @@ export function renderBlogPage({ metadata, html, site, blog, contact, siteRoot }
     ? `<div class="article-tags" id="article-tags">${tagsMarkup}</div>`
     : '<div class="article-tags" id="article-tags" hidden></div>';
   const brand = escapeHtml(site.brand || "Portfolio");
-  const navLinks = Array.isArray(blog.article_nav) ? blog.article_nav : [];
-  const navMarkup = navLinks
-    .map((link) => `<a href="${escapeHtml(resolveHref(link.href, siteRoot))}">${escapeHtml(link.label || "Link")}</a>`)
+  const navMarkup = (Array.isArray(navItems) ? navItems : [])
+    .map((link) => `<a href="${escapeHtml(resolveTarget(link, site.homepageRoot || "/"))}">${escapeHtml(link.label || "Link")}</a>`)
     .join("");
   const backLink = blog.back_link || {};
   const comments = blog.comments || {};
   const commentTitle = escapeHtml(comments.title || "Comments");
   const commentKicker = escapeHtml(comments.kicker || "Comments");
   const commentBody = escapeHtml(comments.body || "");
+  const commentBodyMarkup = commentBody ? `<p>${commentBody}</p>` : "";
   const commentNote = escapeHtml(comments.note || "");
-  const commentAppHref = escapeHtml(comments.app_href || "https://github.com/apps/utterances");
-  const commentAppLabel = escapeHtml(comments.app_label || "Open the Utterances GitHub app");
+  const commentNoteMarkup = commentNote ? `<p class="comment-note">${commentNote}</p>` : "";
   const footerKicker = escapeHtml(contact.kicker || "Contact");
   const footerTitle = escapeHtml(contact.title || "");
   const footerBody = escapeHtml(contact.body || "");
@@ -142,7 +169,7 @@ export function renderBlogPage({ metadata, html, site, blog, contact, siteRoot }
   const footerLinksMarkup = footerLinks
     .map((link) => {
       const target = link.external ? ' target="_blank" rel="noreferrer"' : "";
-      return `<a href="${escapeHtml(resolveHref(link.href, siteRoot))}"${target}>${escapeHtml(link.label || "Link")}</a>`;
+      return `<a href="${escapeHtml(resolveHref(link.href, site.homepageRoot || "/"))}"${target}>${escapeHtml(link.label || "Link")}</a>`;
     })
     .join("");
 
@@ -150,7 +177,7 @@ export function renderBlogPage({ metadata, html, site, blog, contact, siteRoot }
     <div class="page-frame">
       <header class="hero hero-article" id="top">
         <nav class="topbar" aria-label="Article navigation">
-          <a class="brand" href="${escapeHtml(resolveHref("#top", siteRoot))}">${brand}</a>
+          <a class="brand" href="${escapeHtml(site.homepageRoot || "/")}">${brand}</a>
           <div class="nav-links">
             ${navMarkup}
             <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
@@ -160,7 +187,7 @@ export function renderBlogPage({ metadata, html, site, blog, contact, siteRoot }
         </nav>
 
         <section class="article-header">
-          <a class="back-link" href="${escapeHtml(resolveHref(backLink.href || "#blog", siteRoot))}">${escapeHtml(backLink.label || "Back")}</a>
+          <a class="back-link" href="${escapeHtml(resolveTarget(backLink, site.homepageRoot || "/"))}">${escapeHtml(backLink.label || "Back")}</a>
           <p class="eyebrow" id="article-kicker">${kicker}</p>
           <h1 id="article-title">${title}</h1>
           <p class="lede article-lede" id="article-lede">${description}</p>
@@ -182,12 +209,11 @@ ${html}
           <div class="section-heading">
             <p class="section-kicker">${commentKicker}</p>
             <h2>${commentTitle}</h2>
-            <p>${commentBody}</p>
+            ${commentBodyMarkup}
           </div>
 
           <div class="article-card comments-card">
-            <p class="comment-note">${commentNote}</p>
-            <p class="comment-note"><a href="${commentAppHref}" target="_blank" rel="noreferrer">${commentAppLabel}</a></p>
+            ${commentNoteMarkup}
             <div class="comments-host" id="comments-host"></div>
           </div>
         </section>
