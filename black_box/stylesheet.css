@@ -245,6 +245,32 @@ code {
   font-size: 0.96rem;
 }
 
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s ease, color 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-1px);
+}
+
+.nav-link-cta {
+  min-height: 42px;
+  padding: 0.58rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fffaf4;
+  font-weight: 700;
+}
+
+.nav-link-cta:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
 .nav-links a:hover {
   color: #ffffff;
 }
@@ -468,6 +494,15 @@ code {
   display: block;
   margin-top: 6px;
   color: var(--muted);
+}
+
+.metric-link {
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+
+.metric-link:hover {
+  color: var(--text);
 }
 
 .section {
@@ -969,6 +1004,15 @@ code {
 
   .nav-links {
     justify-content: flex-start;
+  }
+
+  .nav-link {
+    line-height: 1.1;
+  }
+
+  .nav-link-cta {
+    min-height: 38px;
+    padding: 0.5rem 0.85rem;
   }
 
   .metric-strip {

@@ -31,10 +31,35 @@ function resolveNavHref(item = {}, homepageRoot = "/") {
   }
 
   if (targetType === "url") {
-    return targetValue || item.href || "#";
+    const href = targetValue || item.href || "#";
+    if (/^[a-z]+:/i.test(href) || href.startsWith("/") || href.startsWith("#")) {
+      return href;
+    }
+    return new URL(href, resolveHomeRoot(homepageRoot)).href;
   }
 
   return item.href || "#";
+}
+
+function initialsFromName(name = "") {
+  const parts = String(name)
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2);
+  return parts.length ? parts.map((part) => part[0].toUpperCase()).join("") : "PF";
+}
+
+function buildFaviconDataUri(name = "") {
+  const initials = initialsFromName(name);
+  return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141f2d'/%3E%3Ctext x='50' y='62' font-size='48' text-anchor='middle' fill='%23f7f3ea' font-family='Arial, sans-serif'%3E${encodeURIComponent(initials)}%3C/text%3E%3C/svg%3E`;
+}
+
+function setMetaContent(selector, attribute, content) {
+  const node = document.querySelector(selector);
+  if (node && content) {
+    node.setAttribute(attribute, content);
+  }
 }
 
 function updateHead(hero) {
@@ -44,16 +69,14 @@ function updateHead(hero) {
   const description = hero.meta_description || hero.lede || "Personal portfolio website";
 
   document.title = title;
-
-  const authorMeta = document.querySelector('meta[name="author"]');
-  if (authorMeta) {
-    authorMeta.setAttribute("content", author);
-  }
-
-  const descriptionMeta = document.querySelector('meta[name="description"]');
-  if (descriptionMeta) {
-    descriptionMeta.setAttribute("content", description);
-  }
+  setMetaContent('meta[name="author"]', "content", author);
+  setMetaContent('meta[name="description"]', "content", description);
+  setMetaContent('meta[property="og:title"]', "content", title);
+  setMetaContent('meta[property="og:description"]', "content", description);
+  setMetaContent('meta[property="og:site_name"]', "content", hero.site_name || name);
+  setMetaContent('meta[name="twitter:title"]', "content", title);
+  setMetaContent('meta[name="twitter:description"]', "content", description);
+  setMetaContent('link[rel="icon"]', "href", buildFaviconDataUri(author || name));
 
   const brand = document.getElementById("site-brand");
   if (brand) {
@@ -63,8 +86,45 @@ function updateHead(hero) {
 
 function renderNav(items, homepageRoot) {
   return asArray(items)
-    .map((item) => `<a href="${escapeHtml(resolveNavHref(item, homepageRoot))}">${escapeHtml(item.label || "Link")}</a>`)
+    .map((item) => {
+      const classes = ["nav-link", item.variant === "cta" || item.style === "cta" || item.cta ? "nav-link-cta" : null]
+        .filter(Boolean)
+        .join(" ");
+      return `<a class="${classes}" href="${escapeHtml(resolveNavHref(item, homepageRoot))}">${escapeHtml(item.label || "Link")}</a>`;
+    })
     .join("");
+}
+
+function applyThemeToggleState(toggle) {
+  const icon = toggle.querySelector(".theme-toggle-icon");
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+  toggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+  toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  if (icon) {
+    icon.textContent = isDark ? "☀" : "☾";
+  }
+}
+
+function setupThemeToggle() {
+  const toggle = document.querySelector(".theme-toggle");
+  if (!toggle) {
+    return;
+  }
+
+  applyThemeToggleState(toggle);
+
+  toggle.addEventListener("click", () => {
+    const root = document.documentElement;
+    const nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", nextTheme);
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch (error) {
+      // Ignore storage failures and keep the visual toggle working.
+    }
+    applyThemeToggleState(toggle);
+  });
 }
 
 function renderHero(metadata) {
@@ -120,13 +180,17 @@ function renderHero(metadata) {
 
 function renderHighlights(metadata) {
   return asArray(metadata.metrics)
-    .map(
-      (metric) => `
+    .map((metric) => {
+      const label = metric.href
+        ? `<a class="metric-label metric-link" href="${escapeHtml(metric.href)}"${metric.external ? ' target="_blank" rel="noreferrer"' : ""}>${escapeHtml(metric.label || "")}</a>`
+        : `<span class="metric-label">${escapeHtml(metric.label || "")}</span>`;
+
+      return `
         <article class="metric-card">
           <span class="metric-value">${escapeHtml(metric.value || "")}</span>
-          <span class="metric-label">${escapeHtml(metric.label || "")}</span>
-        </article>`
-    )
+          ${label}
+        </article>`;
+    })
     .join("");
 }
 
@@ -323,6 +387,7 @@ async function bootHomepage() {
     if (navLinks) {
       navLinks.innerHTML = renderNav(siteConfig.nav?.homepage, homepageRoot);
     }
+    setupThemeToggle();
 
     const results = await Promise.allSettled(
       sections.map((section) => loadMarkdownDocument(new URL(`../../../content/site/${section.file}`, import.meta.url).href))
@@ -346,7 +411,7 @@ async function bootHomepage() {
       }
 
       console.error(`Failed to load section "${key}" from ${section.file}`, result.reason);
-      mountSection(section.target, renderSectionFallback(section.fallbackTitle));
+      mountSection(section.target, renderSectionFallback(section.fallback_title || section.fallbackTitle || "Unable to load section."));
     });
 
     if (!heroLoaded) {

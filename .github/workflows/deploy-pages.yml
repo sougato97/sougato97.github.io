@@ -31,6 +31,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install script dependencies
+        run: python3 -m pip install pyyaml
+
       - name: Ensure blog shells exist
         run: python3 black_box/scripts/ensure_blog_shells.py
 

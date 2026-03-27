@@ -85,10 +85,18 @@ nav:
     - label: Contact
       target_type: page-anchor
       target_value: contact
+    - label: Make It Yours
+      target_type: url
+      target_value: blog/portfolio-in-markdown/
+      style: cta
   article:
     - label: Contact
       target_type: page-anchor
       target_value: contact
+    - label: Make It Yours
+      target_type: url
+      target_value: blog/portfolio-in-markdown/
+      style: cta
 ---
 
 ## What this file controls

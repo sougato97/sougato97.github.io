@@ -33,7 +33,7 @@ cards:
     note: Private / ongoing
   - kicker: Open source
     title: Portfolio-in-Markdown
-    description: "A GitHub Pages portfolio template where the homepage and blog are managed through Markdown, so updating content stays simple without having to work directly in HTML, CSS, or JavaScript."
+    description: "A simpler way to shape a portfolio or blog around your voice, your work, and your story, without writing much code."
     tags:
       - GitHub Pages
       - Markdown

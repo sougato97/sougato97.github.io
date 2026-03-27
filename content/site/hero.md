@@ -2,7 +2,8 @@
 id: hero
 name: Sougato Bagchi
 meta_author: Sougato Bagchi
-page_title: Sougato Bagchi | AI Systems Engineer
+site_name: Sougato Bagchi
+page_title: Sougato Bagchi | Cloud Solutions Architect
 meta_description: Sougato Bagchi builds AI systems across multi-agent orchestration, GraphRAG, open-source LLM infrastructure, and applied machine learning.
 eyebrow: Knowledge Graphs | System Design | Healthcare AI
 title: Turning research ideas into AI systems that hold up in production.
@@ -78,6 +79,7 @@ Useful fields in the YAML above:
 
 - `name`: brand name shown in the site navigation
 - `meta_author`: `<meta name="author">`
+- `site_name`: Open Graph site name used in link previews
 - `page_title`: browser tab title
 - `meta_description`: `<meta name="description">`
 - `eyebrow`, `title`, `lede`, `detail`: hero copy

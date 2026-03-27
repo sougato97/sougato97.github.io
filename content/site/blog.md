@@ -8,7 +8,7 @@ back_link:
   target_value: blog
 comments:
   kicker: Comments
-  title: Discuss on GitHub.
+  title: Join the conversation.
   provider: utterances
   repo: sougato97/sougato97.github.io
   label: blog-comment
@@ -17,6 +17,12 @@ cards:
     title: How Do We Think, and How Do We Invent?
     description: Let's explore whether creativity can be modeled without losing what makes it human, and whether that is the next frontier for AI models.
     href: blog/how-do-we-think-and-invent/
+    link_label: Read article
+    external: false
+  - state: Published
+    title: Portfolio-in-Markdown
+    description: A simpler way to shape a portfolio or blog around your voice, your work, and your story, without writing much code.
+    href: blog/portfolio-in-markdown/
     link_label: Read article
     external: false
   - state: In progress

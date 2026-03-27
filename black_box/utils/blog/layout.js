@@ -4,7 +4,7 @@ function initialsFromName(name = "") {
     .split(/\s+/)
     .filter(Boolean)
     .slice(0, 2);
-  return parts.length ? parts.map((part) => part[0].toUpperCase()).join("") : "SB";
+  return parts.length ? parts.map((part) => part[0].toUpperCase()).join("") : "PF";
 }
 
 function buildFaviconDataUri(name = "") {
@@ -48,6 +48,13 @@ function resolveTarget(item = {}, homepageRoot = "/") {
   }
 
   return resolveHref(targetValue || item.href || "#", homepageRoot);
+}
+
+function renderNavLink(link, homepageRoot = "/") {
+  const classes = ["nav-link", link.variant === "cta" || link.style === "cta" || link.cta ? "nav-link-cta" : null]
+    .filter(Boolean)
+    .join(" ");
+  return `<a class="${classes}" href="${escapeHtml(resolveTarget(link, homepageRoot))}">${escapeHtml(link.label || "Link")}</a>`;
 }
 
 export function syncSharedHead({ site, title, description }) {
@@ -152,7 +159,7 @@ export function renderBlogPage({ metadata, html, site, blog, contact, navItems }
     : '<div class="article-tags" id="article-tags" hidden></div>';
   const brand = escapeHtml(site.brand || "Portfolio");
   const navMarkup = (Array.isArray(navItems) ? navItems : [])
-    .map((link) => `<a href="${escapeHtml(resolveTarget(link, site.homepageRoot || "/"))}">${escapeHtml(link.label || "Link")}</a>`)
+    .map((link) => renderNavLink(link, site.homepageRoot || "/"))
     .join("");
   const backLink = blog.back_link || {};
   const comments = blog.comments || {};

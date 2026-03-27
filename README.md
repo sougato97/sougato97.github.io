@@ -115,12 +115,13 @@ The landing page reads the section files in the browser through `/black_box/util
 - `index.html`: main landing page shell. You don't need any modification.
 - `black_box/stylesheet.css`: shared visual styling. 
 - `blog/`: article pages, each with a thin `index.html` shell and a sibling `article.md`
+- `black_box/templates/home-index.html`: shared homepage shell template with social-preview metadata placeholders
 - `black_box/templates/blog-index.html`: shared shell template for blog post pages
 - `black_box/utils/blog/`: shared blog runtime for Markdown parsing, layout rendering, and comments
 - `black_box/utils/site/`: shared homepage runtime for loading section Markdown and rendering the landing page
 - `content/site/`: Markdown source files for the homepage sections
 - `example/`: reference Markdown files for future content
-- `black_box/scripts/ensure_blog_shells.py`: creates missing blog `index.html` shells from the shared template
+- `black_box/scripts/ensure_blog_shells.py`: syncs homepage/article shell metadata and creates blog `index.html` shells from the shared templates
 - `images/`: site images
 - `data/`: PDFs and other static assets
 
@@ -202,8 +203,11 @@ Use this when you want the repo to be plug-and-play for GitHub Pages deployment.
 What the workflow does on each deployment:
 
 - checks out the repository
+- installs `PyYAML` for the shell-generation script
 - runs `python3 black_box/scripts/ensure_blog_shells.py`
-- creates any missing `blog/<slug>/index.html` files from `black_box/templates/blog-index.html`
+- syncs homepage preview metadata from `content/site/hero.md`
+- syncs blog-article preview metadata from `content/site/blog.md`
+- creates or refreshes `blog/<slug>/index.html` files from `black_box/templates/blog-index.html`
 - uploads the repository as the Pages artifact
 - deploys that artifact to GitHub Pages
 
