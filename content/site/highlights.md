@@ -3,10 +3,10 @@ id: highlights
 metrics:
   - value: CUDA + ROCm
     label: Deployed docker-first inference stacks 
-  - value: Startup AI Architect
+  - value: Cloud AI Architect
     label: Designed the control-agent that cut orchestration latency by 75%+ at a health-tech startup.
   - value: ML Engineer
-    label: Architected medical coding agents at Cozeva
+    label: Developed medical coding agents at Cozeva
     href: https://corp.cozeva.com/
     external: true
   - value: Honorable Award

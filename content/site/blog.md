@@ -13,7 +13,7 @@ comments:
   repo: sougato97/sougato97.github.io
   label: blog-comment
 cards:
-  - state: Published
+  - state: In progress, Draft Published
     title: How Do We Think, and How Do We Invent?
     description: Let's explore whether creativity can be modeled without losing what makes it human, and whether that is the next frontier for AI models.
     href: blog/how-do-we-think-and-invent/
@@ -24,6 +24,12 @@ cards:
     description: A simpler way to shape a portfolio or blog around your voice, your work, and your story, without writing much code.
     href: blog/portfolio-in-markdown/
     link_label: Read article
+    external: false
+  - state: Draft
+    title: The Stakeholders of US Healthcare
+    description: A draft map of the main stakeholders in the US healthcare system, how they relate to one another, and where incentives collide.
+    href: blog/stakeholders-of-us-healthcare/
+    link_label: Open draft
     external: false
   - state: In progress
     title: The Consumerism of Information

@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import html
-import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 BLOG_DIR = ROOT / "blog"
 TEMPLATE_PATH = ROOT / "black_box" / "templates" / "blog-index.html"
 HOME_TEMPLATE_PATH = ROOT / "black_box" / "templates" / "home-index.html"
-BLOG_SOURCE = ROOT / "content" / "site" / "blog.md"
 HOME_OUTPUT = ROOT / "index.html"
 HOME_FALLBACK_CONTEXT = {
     "meta_author": "Portfolio",
@@ -16,18 +14,6 @@ HOME_FALLBACK_CONTEXT = {
     "site_name": "Portfolio",
     "favicon_data_uri": "",
 }
-
-
-def load_frontmatter(path: Path) -> dict:
-    text = path.read_text()
-    if not text.startswith("---\n"):
-        return {}
-    closing = text.find("\n---\n", 4)
-    if closing == -1:
-        raise ValueError(f"Frontmatter is not closed properly in {path}")
-    return yaml.safe_load(text[4:closing]) or {}
-
-
 def render_template(template: str, context: dict[str, str]) -> str:
     rendered = template
     for key, value in context.items():
@@ -49,28 +35,6 @@ def build_favicon_data_uri(name: str) -> str:
     )
 
 
-def normalize_slug_from_href(href: str) -> str:
-    value = href.strip().strip("/")
-    if not value:
-        return ""
-    parts = Path(value).parts
-    if len(parts) >= 2 and parts[0] == "blog":
-        return parts[1]
-    return Path(value).name
-
-
-def build_blog_card_lookup(blog_metadata: dict) -> dict[str, dict]:
-    lookup = {}
-    for card in blog_metadata.get("cards", []):
-        href = card.get("href")
-        if not href:
-            continue
-        slug = normalize_slug_from_href(href)
-        if slug:
-            lookup[slug] = card
-    return lookup
-
-
 def sync_homepage() -> None:
     template = HOME_TEMPLATE_PATH.read_text()
     context = {
@@ -80,39 +44,25 @@ def sync_homepage() -> None:
     HOME_OUTPUT.write_text(render_template(template, context))
 
 
-def sync_blog_shells(blog_lookup: dict[str, dict]) -> tuple[int, int]:
+def sync_blog_shells() -> int:
     template = TEMPLATE_PATH.read_text()
     synced = 0
-    missing = 0
 
     for article_path in sorted(BLOG_DIR.glob("*/article.md")):
-        article_metadata = load_frontmatter(article_path)
-        slug = article_path.parent.name
-        card = blog_lookup.get(slug, {})
-        context = {
-            "article_title": card.get("title") or article_metadata.get("title") or "Blog Article",
-            "article_description": card.get("description") or article_metadata.get("description") or "Blog article",
-        }
         output = article_path.with_name("index.html")
-        output.write_text(render_template(template, context))
+        output.write_text(template)
         synced += 1
-        if slug not in blog_lookup:
-            missing += 1
-            print(f"warning: no blog card match found for slug '{slug}', fell back to article.md metadata")
         print(f"synced {output.relative_to(ROOT)}")
 
-    return synced, missing
+    return synced
 
 
 def main() -> int:
-    blog_metadata = load_frontmatter(BLOG_SOURCE)
-    blog_lookup = build_blog_card_lookup(blog_metadata)
-
     sync_homepage()
-    synced, missing = sync_blog_shells(blog_lookup)
+    synced = sync_blog_shells()
 
     print(f"homepage synced: {HOME_OUTPUT.relative_to(ROOT)}")
-    print(f"summary: blog_shells={synced} fallback_metadata={missing}")
+    print(f"summary: blog_shells={synced}")
     return 0
 
 

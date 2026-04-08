@@ -980,34 +980,45 @@ code {
 
 @media (max-width: 720px) {
   .page-frame {
-    padding: 14px 16px 56px;
+    padding: 12px 16px 56px;
   }
 
   .hero {
-    padding: 20px 18px 28px;
+    padding: 78px 18px 28px;
     border-radius: 28px;
   }
 
   .topbar {
-    position: static;
-    flex-direction: column;
-    align-items: flex-start;
-    width: auto;
-    padding: 0 0 24px;
-    border: none;
-    border-radius: 0;
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    flex-direction: row;
+    align-items: center;
+    width: calc(100% - 32px);
+    padding: 10px 14px;
+    border: 1px solid transparent;
+    border-radius: 24px;
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
-    transform: none;
+    transform: translateX(-50%);
   }
 
   .nav-links {
-    justify-content: flex-start;
+    justify-content: flex-end;
+    gap: 10px;
   }
 
   .nav-link {
     line-height: 1.1;
+  }
+
+  .nav-link-list {
+    gap: 10px;
+  }
+
+  .brand {
+    font-size: 0.98rem;
   }
 
   .nav-link-cta {

@@ -87,9 +87,9 @@ $$
 
 $$
 
-That basically means that our idea of pursuing *stem cell research* to solve a
-few problems, like organ failure and cancer, came from prior needs, along with
-a few boundary conditions, such as not killing humans or animals.
+That basically means the idea of pursuing stem cell research to address problems 
+like organ failure and cancer came from existing needs, along with boundary 
+conditions such as not harming humans or animals.
 
 
 ## What current AI models are already good at
@@ -97,7 +97,7 @@ a few boundary conditions, such as not killing humans or animals.
 Present-generation models are already strong at recall, recombination, and
 compression. They can pull patterns out of large corpora, summarize them, and
 produce plausible continuations. These models, which are most likely based on
-*Transformers*, are, in simple language, word predictors.
+*Transformers* [4], are, in simple language, word predictors.
 
 Present-generation AI really feels intelligent and might give you the strong
 illusion that it can think. As of now, if I give any AI model the task of
@@ -136,3 +136,4 @@ this topic and see if something comes up. I will also update my progress here.
 1. Albert Einstein, [*On the Electrodynamics of Moving Bodies*](https://www.fourmilab.ch/etexts/einstein/specrel/specrel.pdf).
 2. Encyclopaedia Britannica, [*Archimedes' principle*](https://www.britannica.com/science/Archimedes-principle).
 3. Irving L. Weissman and Judith A. Shizuru, [*The origins of the identification and isolation of hematopoietic stem cells, and their capability to induce donor-specific transplantation tolerance and treat autoimmune diseases*](https://pmc.ncbi.nlm.nih.gov/articles/PMC2574516/).
+4. Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin, [*Attention Is All You Need*](https://arxiv.org/abs/1706.03762).

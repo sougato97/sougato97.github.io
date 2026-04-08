@@ -3,6 +3,8 @@ site:
   # Keep this correct: homepage and blog links resolve from here.
   homepage_root: /
 sections:
+  # The order values are spaced out on purpose so new sections can be inserted later
+  # without renumbering every existing section.
   - id: hero
     file: hero.md
     target: hero-content
