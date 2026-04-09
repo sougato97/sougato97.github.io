@@ -57,6 +57,10 @@ function renderNavLink(link, homepageRoot = "/") {
   return `<a class="${classes}" href="${escapeHtml(resolveTarget(link, homepageRoot))}">${escapeHtml(link.label || "Link")}</a>`;
 }
 
+function isCtaNavItem(link = {}) {
+  return Boolean(link.variant === "cta" || link.style === "cta" || link.cta);
+}
+
 export function syncSharedHead({ site, title, description }) {
   const siteTitle = site.titleSuffix || site.brand || site.author || "Portfolio";
   const author = site.author || site.brand || "";
@@ -159,6 +163,11 @@ export function renderBlogPage({ metadata, html, site, blog, contact, navItems }
     : '<div class="article-tags" id="article-tags" hidden></div>';
   const brand = escapeHtml(site.brand || "Portfolio");
   const navMarkup = (Array.isArray(navItems) ? navItems : [])
+    .filter((link) => !isCtaNavItem(link))
+    .map((link) => renderNavLink(link, site.homepageRoot || "/"))
+    .join("");
+  const navCtaMarkup = (Array.isArray(navItems) ? navItems : [])
+    .filter((link) => isCtaNavItem(link))
     .map((link) => renderNavLink(link, site.homepageRoot || "/"))
     .join("");
   const backLink = blog.back_link || {};
@@ -186,11 +195,15 @@ export function renderBlogPage({ metadata, html, site, blog, contact, navItems }
         <nav class="topbar" aria-label="Article navigation">
           <a class="brand" href="${escapeHtml(site.homepageRoot || "/")}">${brand}</a>
           <div class="nav-links">
-            ${navMarkup}
-            <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
-              <span class="theme-toggle-icon" aria-hidden="true">☾</span>
-            </button>
+            <div class="nav-link-list" id="article-nav-links">${navMarkup}</div>
+            <div class="nav-cta-slot" id="article-nav-cta">${navCtaMarkup}</div>
           </div>
+          <button class="nav-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="article-nav-links">
+            <span class="nav-menu-toggle-bars" aria-hidden="true"></span>
+          </button>
+          <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+            <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+          </button>
         </nav>
 
         <section class="article-header">

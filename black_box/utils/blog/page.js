@@ -120,6 +120,57 @@ function setupThemeToggle(commentsConfig) {
   });
 }
 
+function setupMobileNav() {
+  const topbar = document.querySelector(".topbar");
+  const toggle = document.querySelector(".nav-menu-toggle");
+  const navList = document.querySelector(".nav-link-list");
+  if (!topbar || !toggle || !navList) {
+    return;
+  }
+
+  const closeMenu = () => {
+    topbar.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation menu");
+  };
+
+  const openMenu = () => {
+    topbar.classList.add("menu-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close navigation menu");
+  };
+
+  toggle.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (topbar.classList.contains("menu-open")) {
+      closeMenu();
+      return;
+    }
+    openMenu();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!topbar.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  navList.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 720) {
+      closeMenu();
+    }
+  });
+
+  closeMenu();
+}
+
 async function bootArticlePage() {
   const { source } = getBodyConfig();
 
@@ -163,6 +214,7 @@ async function bootArticlePage() {
 
     syncSharedHead({ site, title: metadata.title || "Untitled Article", description: metadata.description || "" });
     setupThemeToggle(commentsConfig);
+    setupMobileNav();
 
     if (metadata.math) {
       await loadMathJax();

@@ -95,6 +95,10 @@ function renderNav(items, homepageRoot) {
     .join("");
 }
 
+function isCtaNavItem(item = {}) {
+  return Boolean(item.variant === "cta" || item.style === "cta" || item.cta);
+}
+
 function applyThemeToggleState(toggle) {
   const icon = toggle.querySelector(".theme-toggle-icon");
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
@@ -125,6 +129,57 @@ function setupThemeToggle() {
     }
     applyThemeToggleState(toggle);
   });
+}
+
+function setupMobileNav() {
+  const topbar = document.querySelector(".topbar");
+  const toggle = document.querySelector(".nav-menu-toggle");
+  const navList = document.querySelector(".nav-link-list");
+  if (!topbar || !toggle || !navList) {
+    return;
+  }
+
+  const closeMenu = () => {
+    topbar.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation menu");
+  };
+
+  const openMenu = () => {
+    topbar.classList.add("menu-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close navigation menu");
+  };
+
+  toggle.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (topbar.classList.contains("menu-open")) {
+      closeMenu();
+      return;
+    }
+    openMenu();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!topbar.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  navList.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 720) {
+      closeMenu();
+    }
+  });
+
+  closeMenu();
 }
 
 function renderHero(metadata) {
@@ -385,9 +440,14 @@ async function bootHomepage() {
 
     const navLinks = document.getElementById("site-nav-links");
     if (navLinks) {
-      navLinks.innerHTML = renderNav(siteConfig.nav?.homepage, homepageRoot);
+      navLinks.innerHTML = renderNav(asArray(siteConfig.nav?.homepage).filter((item) => !isCtaNavItem(item)), homepageRoot);
+    }
+    const navCta = document.getElementById("site-nav-cta");
+    if (navCta) {
+      navCta.innerHTML = renderNav(asArray(siteConfig.nav?.homepage).filter((item) => isCtaNavItem(item)), homepageRoot);
     }
     setupThemeToggle();
+    setupMobileNav();
 
     const results = await Promise.allSettled(
       sections.map((section) => loadMarkdownDocument(new URL(`../../../content/site/${section.file}`, import.meta.url).href))
