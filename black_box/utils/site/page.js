@@ -14,6 +14,16 @@ function assetUrl(relativePath) {
   return new URL(relativePath, import.meta.url).href;
 }
 
+function resolveOptionalHref(href = "") {
+  if (!href) {
+    return "";
+  }
+  if (/^[a-z]+:/i.test(href) || href.startsWith("/") || href.startsWith("#")) {
+    return href;
+  }
+  return new URL(href, import.meta.url).href;
+}
+
 function resolveHomeRoot(homepageRoot = "/") {
   return new URL(homepageRoot, import.meta.url).href;
 }
@@ -211,6 +221,11 @@ function renderHero(metadata) {
     .join("");
 
   const portrait = metadata.portrait || {};
+  const panelKicker = metadata.panel?.kicker || "";
+  const panelKickerHref = resolveOptionalHref(metadata.panel?.kicker_href || "");
+  const panelKickerHtml = panelKickerHref
+    ? `<a href="${escapeHtml(panelKickerHref)}" target="_blank" rel="noreferrer">${escapeHtml(panelKicker)}</a>`
+    : escapeHtml(panelKicker);
 
   return `
     <div class="hero-copy">
@@ -223,11 +238,15 @@ function renderHero(metadata) {
     </div>
 
     <aside class="profile-panel">
-      <img class="portrait" src="${escapeHtml(portrait.src || "images/sougato_dp_circle.png")}" alt="${escapeHtml(portrait.alt || "Portrait")}">
-      <div class="profile-panel-body">
-        <p class="panel-kicker">${escapeHtml(metadata.panel?.kicker || "")}</p>
-        <h2>${escapeHtml(metadata.panel?.title || "")}</h2>
-        <p>${escapeHtml(metadata.panel?.body || "")}</p>
+      <div class="profile-panel-top">
+        <img class="portrait" src="${escapeHtml(portrait.src || "images/sougato_dp_circle.png")}" alt="${escapeHtml(portrait.alt || "Portrait")}">
+        <div class="profile-panel-body">
+          <p class="panel-kicker">${panelKickerHtml}</p>
+          <h2>${escapeHtml(metadata.panel?.title || "")}</h2>
+          <p>${escapeHtml(metadata.panel?.body || "")}</p>
+        </div>
+      </div>
+      <div class="profile-panel-bottom">
         <div class="tag-row">${panelTags}</div>
       </div>
     </aside>`;

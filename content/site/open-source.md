@@ -2,6 +2,16 @@
 id: work
 title: Projects that reflect how I think about infrastructure, agents, and retrieval.
 cards:
+  - kicker: Independent Research
+    title: redentify.work
+    description: Designing ranking strategies for unstructured data.
+    tags:
+      - Knowledge Graph
+      - LLM Inference
+      - Query-Reranking
+    href: https://redentify.work/
+    link_label: View page
+    
   - kicker: Open source
     title: ModelServer
     description: Docker-first LLM inference stack spanning CUDA and ROCm, covering vLLM, llama.cpp, deployment ergonomics, and model-serving evaluation.
@@ -13,6 +23,7 @@ cards:
     href: https://github.com/sougato97/ModelServer
     link_label: View repository
     external: true
+  
   - kicker: Open source
     title: Graphrag-OSS
     description: GraphRAG stack built with ClickHouse, open-source LLM and embedding models for retrieval-heavy workflows.
@@ -23,15 +34,7 @@ cards:
     href: https://github.com/sougato97/graphrag
     link_label: View repository
     external: true
-  - kicker: Independent Research
-    title: redentify.work
-    description: Designing ranking strategies for unstructured data.
-    tags:
-      - Knowledge Graph
-      - LLM Inference
-      - Query-Reranking
-    href: http://redentify.work/
-    link_label: View page
+
   - kicker: Open source
     title: Portfolio-in-Markdown
     description: "A simpler way to shape a portfolio or blog around your voice, your work, and your story, without writing much code."

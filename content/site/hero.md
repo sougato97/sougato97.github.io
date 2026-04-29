@@ -8,11 +8,9 @@ meta_description: Sougato Bagchi builds AI systems across multi-agent orchestrat
 eyebrow: Knowledge Graphs | System Design | Healthcare AI
 title: Turning research ideas into AI systems that hold up in production.
 lede: >
-  Right now, I work on LLM infrastructure, inference stacks, knowledge graphs,
-  and retrieval systems backed by OLAP databases such as ClickHouse. Much of my
-  current work is focused on making open-source small language models efficient
-  for narrow tasks and deployable across CUDA and ROCm, while keeping retrieval
-  systems fast, modular, and useful on messy real-world data.
+  I design and deploy AI platforms across cloud and local infrastructure,
+  with a focus on retrieval systems, knowledge graphs, and efficient inference
+  stacks that stay reliable in production.
 detail: >
   At **fundae.ai**, I designed the control agent concept: an orchestration layer
   that reduced latency and improved answer quality across downstream agents. At
@@ -55,10 +53,11 @@ portrait:
   src: images/sougato_dp_circle.png
   alt: Portrait of Sougato Bagchi
 panel:
-  kicker: Current work
-  title: Design systems that scale from local servers to the cloud.
+  kicker: redentify.work
+  kicker_href: https://redentify.work/
+  title: Designing ranking strategies for unstructured data.
   body: >
-    Building a compact AI stack from the ground up: custom indexing that
+    Building a compact AI stack from the ground up with custom indexing that
     combines PageRank-style signals with approximate nearest-neighbor search to
     form knowledge graphs from public information, alongside local multi-GPU
     inference stacks that make better use of RAM and VRAM without moving core

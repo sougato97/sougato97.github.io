@@ -8,9 +8,9 @@ items:
   - side: right
     kind: work
     date: Oct 2025 - Present
-    title: Applied ML Systems Project
-    role: Applied ML Systems Engineer
-    description: Designed semantic retrieval for long-form, heterogeneous documents using chunk-level embeddings, ANN search, agreement-based scoring, reranking, and local multi-GPU open-source model deployment.
+    title: redentify.work
+    role: Independent Researcher
+    description: Design indexing algorithm for heterogeneous information using chunk-level embeddings, ANN search, agreement-based scoring, reranking, and local multi-GPU open-source model deployment.
   - side: left
     kind: work
     date: Apr 2025 - Nov 2025
