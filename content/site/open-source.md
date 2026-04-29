@@ -23,14 +23,14 @@ cards:
     href: https://github.com/sougato97/graphrag
     link_label: View repository
     external: true
-  - kicker: Current systems work
-    title: Project-Pod
-    description: Early-stage work on building a knowledge graph from public professional information, with room for collaborators as it matures.
+  - kicker: Independent Research
+    title: redentify.work
+    description: Designing ranking strategies for unstructured data.
     tags:
       - Knowledge Graph
       - LLM Inference
       - Query-Reranking
-    note: Private / ongoing
+    href: http://redentify.work/
   - kicker: Open source
     title: Portfolio-in-Markdown
     description: "A simpler way to shape a portfolio or blog around your voice, your work, and your story, without writing much code."
