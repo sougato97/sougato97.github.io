@@ -31,6 +31,7 @@ cards:
       - LLM Inference
       - Query-Reranking
     href: http://redentify.work/
+    link_label: View page
   - kicker: Open source
     title: Portfolio-in-Markdown
     description: "A simpler way to shape a portfolio or blog around your voice, your work, and your story, without writing much code."
